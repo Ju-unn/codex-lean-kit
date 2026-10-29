@@ -52,7 +52,7 @@ AI 실무 평가(Krafton Cofa Probe)는 결과물만이 아니라 **일하는 �
 | 질문을 메시지당 하나씩 (brainstorming) | 시간 제한. 대신 grilling의 "라운드마다 열린 질문 전부" 방식을 씀 |
 | 6단계 전체 보안 감사 (cloudflare) | 수 시간짜리 감사 절차. 검증 원칙과 공격 유형만 가져옴 |
 | graphify | 큰 기존 코드베이스용. README만 있는 빈 작업 공간에는 효과가 없음 |
-| ponytail 매 프롬프트 규칙 주입 | 원본 저장소의 자체 측정에서 GPT 계열은 비용 +26~39%. 사다리 규칙은 AGENTS.md에 넣음 |
+| ponytail 플러그인·훅 설치 | 훅은 `/hooks` 신뢰가 필요하고 Codex 설정을 바꾼다(시험 규칙 위험). 원본이 안내하는 훅 없는 방식대로 ponytail AGENTS.md 원문을 그대로 AGENTS.md에 넣음 |
 | 1% 규칙으로 모든 스킬 강제 호출 (using-superpowers) | 시험 중에는 단계마다 사람이 `$스킬`로 지휘하는 것이 의도 축에 맞음 |
 
 참고 문서(필요할 때만 읽힘):
