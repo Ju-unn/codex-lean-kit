@@ -1,0 +1,51 @@
+# TypeScript default stack (empty workspace only)
+
+Use this when the workspace has no package.json or starter code. Otherwise follow what exists.
+
+## Layout
+```
+server/
+  src/app.ts         createApp(db) returns the express app; no listen, so tests import it
+  src/index.ts       opens the DB, runs schema.sql, app.listen(PORT, '0.0.0.0')
+  src/routes/*.ts    HTTP only: validate input, call a service, map errors
+  src/services/*.ts  domain rules (unit-tested)
+  src/repos/*.ts     SQL only, parameterized
+  src/schema.sql     idempotent CREATE TABLE IF NOT EXISTS
+  test/*.test.ts     vitest + supertest against createApp(new DatabaseSync(':memory:'))
+public/ or web/      UI, chosen below
+```
+
+## UI
+- One simple page:
+  - plain HTML/JS in public/, served by express.static.
+  - One process, one port.
+- Several screens or client state:
+  - Vite + React in web/.
+  - In vite.config: `server: { host: true, allowedHosts: ['.e2b.app', '.e2b.dev'], proxy: { '/api': 'http://localhost:3000' } }`
+  - Without allowedHosts, Vite 6+ rejects the preview hostname with "Blocked request. This host is not allowed."
+- Every screen:
+  - shows empty, loading, and error states
+  - labels things in the user's language
+  - makes the one primary action obvious
+  - Graders take screenshots.
+
+## Packages
+The main agent installs them once.
+- server: express, zod
+- dev: typescript, tsx, vitest, supertest, @types/node, @types/express, @types/supertest
+- DB:
+  - `node:sqlite` DatabaseSync when `node --version` is 22.13 or later (no dependency; verified under vitest 5).
+  - Otherwise better-sqlite3.
+
+## Scripts
+`"dev": "tsx watch src/index.ts"`, `"test": "vitest run"`, `"typecheck": "tsc --noEmit"`
+
+## Code rules
+- Strict TypeScript; no `any`.
+- Validate once at the route boundary with zod; trust the types after that.
+- One error shape `{ error: { code, message } }` and one error middleware. Responses never include stack traces or SQL.
+- Names use the domain nouns from docs/requirements.md. Comments say why, not what.
+- Tests:
+  - Each test file creates its own in-memory DB.
+  - Test behaviour at the route or service seam.
+  - No test re-computes its expected value the way the code does.

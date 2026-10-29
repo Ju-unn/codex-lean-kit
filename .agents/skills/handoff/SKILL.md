@@ -1,0 +1,40 @@
+---
+name: handoff
+description: Use when the plan has just been approved, when wrapping up, before /compact or /new, or when the conversation is getting long. Main agent only.
+---
+
+# Handoff
+
+Another session or another person must be able to continue from files alone, without this conversation.
+
+## Planned points
+- After plan approval:
+  1. Write the handoff.
+  2. The user runs `/new` and starts the build with "docs/HANDOFF.md를 읽고 이어서 진행해."
+  3. The build then runs on a clean context.
+- At wrap: write the final handoff for the person who maintains this next.
+- Any other time: before `/compact`, or when the conversation is getting long.
+
+## Write docs/HANDOFF.md
+Replace the file each time. Korean, 25 lines at most.
+
+For the next session:
+- Phase, the time from `date`, minutes left
+- Done: the latest commits (short hash + subject)
+- In progress: T-n, who is on it, its state
+- Next 3 steps, and the skill to use next
+- Open questions for the stakeholder or the user
+
+For the next person:
+- How to run and test: the exact commands
+- Code map: the 3-5 files that matter and what each does
+- Known risks and limits; point to docs/REPORT.md once it exists
+- Where decisions live: docs/plan.md Decisions
+
+Point to requirements.md, plan.md, and commits instead of copying them.
+
+## Drift check
+Before writing, re-read the Agreement block in docs/requirements.md. If the work has drifted from it, tell the user in one line and record the decision.
+
+## Then
+Commit "docs: handoff". Tell the user the next command: `/new` or `/compact`.
