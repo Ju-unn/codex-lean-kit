@@ -12,16 +12,12 @@
 -
 
 ## Requirements
-| ID | Requirement | Source (README / Q-n / A-n) | Acceptance example | MVP |
+| ID | Requirement | Source (README / Q-n in docs/qna.md / A-n) | Acceptance example | MVP |
 |---|---|---|---|---|
 
 ## Assumptions
 | ID | Assumption | Why | Revisit if |
 |---|---|---|---|
-
-## Q&A log
-| Q | Question (asked by the user) | Answer summary | Changed | Original |
-|---|---|---|---|---|
 
 ## Open questions
 -

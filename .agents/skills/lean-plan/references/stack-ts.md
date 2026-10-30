@@ -56,7 +56,7 @@ test/ui/*.check.mjs                  UI logic checks, run with node --test test/
   - shows empty, loading, and error states
   - labels things in the user's language
   - makes the one primary action obvious
-  - follows docs/design-system/<slug>/MASTER.md from $ui-design
+  - follows docs/design.md from $ui-design
   - Graders take screenshots.
 
 ## Packages

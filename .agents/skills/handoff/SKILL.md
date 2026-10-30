@@ -19,7 +19,7 @@ Another session or another person must be able to continue from files alone, wit
 Replace the file each time. Korean, 30 lines at most.
 
 For the next session:
-- Read first: the files the next step needs, in order. Usually docs/requirements.md (Agreement, R-n), docs/plan.md (next T-n, Global constraints), and docs/materials/ for exact values.
+- Read first: the files the next step needs, in order. Usually docs/requirements.md (Agreement, R-n), docs/plan.md (next T-n, Global constraints), and the docs/qna.md entries those R-n cite, for exact values.
 - Phase and the time from `date`
 - Done: the latest commits (short hash + subject)
 - In progress: T-n, who is on it, its state

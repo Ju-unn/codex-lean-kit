@@ -52,11 +52,11 @@ Build each query around one dominant intent, with 2-5 meaningful terms and one u
 For accessibility, search one observable outcome at a time, the semantic outcome first (`"error summary validation" --domain ux`), then a component domain (`"icon button accessible label" --domain icons`), then the stack.
 
 ## Start here
-Check for a master: `ls docs/design-system/*/MASTER.md`.
+Check for the design file: `ls docs/design.md`.
 - None: do steps 1 to 3 before any screen code.
 - One: read it, and go to step 4.
 
-No screen code, stylesheet, or master before the user has answered the step 2 questions or said "추천대로". This holds even when the request says to build the screen now. If another design skill is listed (for example ui-ux-pro-max), follow this one; it is the kit's.
+No screen code, stylesheet, or design file before the user has answered the step 2 questions or said "추천대로". This holds even when the request says to build the screen now. If another design skill is listed (for example ui-ux-pro-max), follow this one; it is the kit's.
 
 ## Step 1: Read the requirements
 From docs/requirements.md and docs/plan.md:
@@ -83,21 +83,21 @@ From docs/requirements.md and docs/plan.md:
    - Fonts: the preview's pair, or system fonts only.
 3. Wait for the answers. During $lean-plan these questions go in the plan gate, and the answers go under Decisions.
 
-## Step 3: Save the master
-1. Run the chosen direction again with `--persist --output-dir docs`. Never pass `--force` without the user's go.
-2. Set the Color Palette and Typography in docs/design-system/<slug>/MASTER.md to the user's answers.
-3. Check text contrast for every color and its on-color pair. Below 4.5:1, tell the user and propose the nearest shade that passes.
-4. Done when MASTER.md exists and matches the answers.
+## Step 3: Save docs/design.md
+1. Run the chosen direction again with `--persist --output-dir /tmp/ui-design`, outside the workspace.
+2. Copy the generated MASTER.md to docs/design.md. Leave no design-system/ folder in the workspace.
+3. Set the Color Palette and Typography in docs/design.md to the user's answers. Drop its note about per-page override files.
+4. Check text contrast for every color and its on-color pair. Below 4.5:1, tell the user and propose the nearest shade that passes.
+5. Done when docs/design.md exists and matches the answers.
 
-## Step 4: Build pages from the master
-1. If docs/design-system/<slug>/pages/<page>.md exists, its rules override the master.
-2. The stylesheet starts with one `:root` block built from the master:
+## Step 4: Build pages from docs/design.md
+1. The stylesheet starts with one `:root` block built from docs/design.md:
    - every Color Palette row as its CSS variable, for example `--color-primary: #0891B2;`
    - the Spacing Variables and Shadow Depths tokens as written
    - `--font-heading` and `--font-body` from Typography, each ending in a system fallback, for example `'Fira Sans', system-ui, sans-serif`
-3. Components use only these variables. Raw hex values appear only inside `:root`.
-4. Follow the master's Component Specs and avoid its Anti-Patterns.
-5. Search details as needed:
+2. Components use only these variables. Raw hex values appear only inside `:root`.
+3. Follow its Component Specs and avoid its Anti-Patterns.
+4. Search details as needed:
 
 | Need | Domain | Example |
 |---|---|---|
@@ -140,7 +140,7 @@ Do not fabricate output.
 | Performance or jank | references/quick-reference.md §3: `virtualize-lists` + `debounce-throttle` |
 
 ## Before reporting a UI task
-- Run the Pre-Delivery Checklist from MASTER.md. For mobile or native targets, also the one in references/pro-rules.md.
+- Run the Pre-Delivery Checklist from docs/design.md. For mobile or native targets, also the one in references/pro-rules.md.
 - Report each item as done or not done, with the file it concerns.
 
-Sources: nextlevelbuilder/ui-ux-pro-max-skill (MIT): priority table, query contract, design-system workflow, master and page overrides, domains, 0-results rule, tips, checklists. The scripts, data, and references are copied unchanged, without the upstream's dev-only tests and three data files the search does not read. Changed: the user picks style, colors, and fonts.
+Sources: nextlevelbuilder/ui-ux-pro-max-skill (MIT): priority table, query contract, design-system workflow, domains, 0-results rule, tips, checklists. The scripts, data, and references are copied unchanged, without the upstream's dev-only tests and three data files the search does not read. Changed: the user picks style, colors, and fonts; one docs/design.md replaces the master and page files.

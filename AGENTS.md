@@ -16,7 +16,7 @@ This kit holds process only, no application code. The task README and any files 
 - Never git push or send task files, code, or data outside the workspace. Web search is for public library docs only; never put task text, code, or data into a query.
 - No computer use or browser automation. You run the server and check it with curl; the user looks at the page.
 - Do not change Codex or platform settings, sandbox, or approval policy. Never use --dangerously-* flags, danger-full-access, or --approve-for-me.
-- Never overwrite the task README.md. Kit documents live in docs/.
+- Never overwrite the task README.md. Kit documents live in docs/, flat, no subfolders: requirements.md, qna.md, plan.md, design.md (only with screens), worklog.md, HANDOFF.md, REPORT.md. Another doc file only if the task README asks for it.
 
 ## Phases
 Phases move on when their done-when is met, never because of the clock. The platform ends the session, not you: never stop, cut scope, or ask whether to continue because of time, even if the task README states a time limit.

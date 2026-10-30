@@ -40,7 +40,7 @@ Map every file that will be created or modified, with its one responsibility.
 ### 4. Data model and API
 - Data model: tables, keys, and constraints per references/data-model.md, when the task stores data.
 - API: method, path, request, response, error codes.
-- UI, when the MVP has screens: put the $ui-design questions (style, colors, fonts) in the plan gate. Record the answers under Decisions, save the master, and point every UI task to docs/design-system/<slug>/MASTER.md.
+- UI, when the MVP has screens: put the $ui-design questions (style, colors, fonts) in the plan gate. Record the answers under Decisions, save docs/design.md, and point every UI task to it.
 
 ### 5. Global constraints and review focus
 - Global constraints: exact values copied from docs/requirements.md (limits, formats, rules), one per line. Every task inherits them.

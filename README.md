@@ -40,7 +40,7 @@ AI 실무 평가(Krafton Cofa Probe)는 결과물만이 아니라 **일하는 �
 | `$quality-gate` | MVP가 처음부터 끝까지 동작할 때 | **두 리뷰어 병렬**: 명세 축과 품질 축(보안·DB·과설계·Fowler 냄새). 구체적 사례가 있는 결함만 보고 | mattpocock `code-review` + ponytail-review + cloudflare·ECC 체크리스트 |
 | `$verify-and-wrap` | 기능이 다 됐을 때, 완료라고 말하기 전 | 확인 절차(명령 → 실행 → 결과 읽기 → 판단), PASS/FAIL/NOT_RUN, REPORT, 일치 검사, 약점 브리프 | superpowers `verification-before-completion`(충실 이식) + ECC `verification-loop` |
 | `$handoff` | 계획 승인 직후, 마무리 때, `/compact`·`/new` 전 | `docs/HANDOFF.md`: 다음 세션용(상태, 다음 단계, 다음 스킬)과 다음 사람용(실행 방법, 코드 지도, 위험) | mattpocock `handoff` + Cofathon 후기 |
-| `$ui-design` | 화면을 만들거나 고치기 전 (자동) | 도구로 서로 다른 방향 2개를 미리 보고 **스타일·색·폰트를 사용자에게 묻는다**(답 전에는 화면 코드 금지) → 답대로 `docs/design-system/<slug>/MASTER.md` 저장, 대비 4.5:1 확인 → CSS `:root` 변수로 적용 → 접근성 우선순위와 제출 전 체크리스트. 새 UI 의존성 금지, 폰트는 시스템 대체 포함 | nextlevelbuilder `ui-ux-pro-max-skill`(스크립트·데이터·참고 문서는 원본 그대로, 절차는 충실 이식) |
+| `$ui-design` | 화면을 만들거나 고치기 전 (자동) | 도구로 서로 다른 방향 2개를 미리 보고 **스타일·색·폰트를 사용자에게 묻는다**(답 전에는 화면 코드 금지) → 답대로 `docs/design.md` 저장, 대비 4.5:1 확인 → CSS `:root` 변수로 적용 → 접근성 우선순위와 제출 전 체크리스트. 새 UI 의존성 금지, 폰트는 시스템 대체 포함 | nextlevelbuilder `ui-ux-pro-max-skill`(스크립트·데이터·참고 문서는 원본 그대로, 절차는 충실 이식) |
 
 ### 이식 원칙
 - **핵심 절차는 원본을 충실히 옮겼습니다.** 원본의 철칙, 단계, 표, 경고 신호, 변명과 반박 표, 출력 형식이 그대로 들어 있습니다.
@@ -66,7 +66,8 @@ AI 실무 평가(Krafton Cofa Probe)는 결과물만이 아니라 **일하는 �
 
 작업 공간에 생기는 문서:
 - `docs/requirements.md`
-- `docs/materials/` (담당자 답변·자료 원문)
+- `docs/qna.md` (질문과 답 원문, 한 파일)
+- `docs/design.md` (화면 기준, 화면이 있을 때만)
 - `docs/plan.md` (결정 포함)
 - `docs/worklog.md` (계속 덧붙이는 기록)
 - `docs/HANDOFF.md` (인계 스냅샷)

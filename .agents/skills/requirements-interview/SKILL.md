@@ -73,11 +73,19 @@ Rules for [담당자] and [자료] questions:
 For question stems by technique, read references/question-techniques.md.
 
 ## When the user pastes answers or materials
-1. Save the paste first, answers and materials alike, in docs/materials/ named by its Q-numbers (for example Q3-Q5.md). Put the source on top and keep the text exactly as pasted. Later sessions read exact values here.
-2. Add a row per answered Q to the Q&A log in docs/requirements.md: answer summary, what changed, and the file.
-3. Update R-n, with the Q-number as the source. Turn concrete examples into acceptance-test candidates, and use materials as test data.
-4. Record assumptions as A-n, close the answered branches, and recompute the frontier.
-5. Report only what changed, then give the next round.
+1. Append each answered question to docs/qna.md, oldest first, as one entry:
+   ```
+   ## Q4 [담당자] <short title> · <time from date>
+   질문: <the question as it was sent>
+   답(원문): <the answer exactly as pasted>
+   반영: R-3, R-5
+   ```
+   - Stakeholder answers, materials (tables as pasted), and the user's [결정] answers all go here.
+   - Leave out what is not an answer: terminal or chat status lines (lines starting with ✻ or ❯), the user's own questions to you, plan approvals.
+   - Never edit an answer. Later sessions read exact values here.
+2. Update R-n, with the Q-number as the source. Turn concrete examples into acceptance-test candidates, and use materials as test data.
+3. Record assumptions as A-n, close the answered branches, and recompute the frontier.
+4. Report only what changed, then give the next round.
 
 ## Done when
 - The frontier is empty: every branch visited, nothing silently assumed.
