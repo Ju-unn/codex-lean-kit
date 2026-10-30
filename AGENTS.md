@@ -14,7 +14,7 @@ This kit holds process only, no application code. The task README and any files 
 ## Hard rules
 - Models: only gpt-6.1-sol, gpt-6-sol, gpt-5.6-terra, gpt-6-luna. Never use or suggest another model.
 - Never git push or send task files, code, or data outside the workspace. Web search is for public library docs only; never put task text, code, or data into a query.
-- No computer use or browser automation. The user checks the UI in the IDE Browser preview; you verify with tests and curl.
+- No computer use or browser automation. You run the server and check it with curl; the user looks at the page in the IDE Browser preview or the remote desktop's Chromium.
 - Do not change Codex or platform settings, sandbox, or approval policy. Never use --dangerously-* flags, danger-full-access, or --approve-for-me.
 - Never overwrite the task README.md. Kit documents live in docs/.
 
@@ -35,7 +35,7 @@ If the user asks for a phase without naming its skill, read that skill's SKILL.m
 
 ## Setup (main agent, minute 0)
 1. Inspect: `ls -la`, `git status`, README.md, existing stack or starter code. Follow what exists.
-2. `git init` if needed. Add .gitignore: node_modules, dist, .env, *.db. If git identity is missing, ask the user, then set it repo-local.
+2. `git init` if needed. Add .gitignore: node_modules, dist, .env, *.db, .server.*. If git identity is missing, ask the user, then set it repo-local.
 3. Commit "chore: baseline + process-only kit (github.com/Ju-unn/codex-lean-kit)", then `git branch baseline`.
 4. Create docs/worklog.md, an append-only log that starts with the time from `date`.
 
@@ -76,17 +76,27 @@ Never cut: validation at trust boundaries, error handling that prevents data los
 - Behaviour changes follow $tdd: one failing test, minimal code, repeat. $tdd is stricter than ponytail's one-small-test floor; follow $tdd.
 - Failures follow $debugging: root cause before any fix.
 - Before saying anything is done, fixed, or passing, run the command that proves it in this turn and show the result.
-- Servers listen on 0.0.0.0.
 - Record a decision when it is made, in docs/plan.md Decisions. New requirements go to docs/requirements.md first.
 - Commits:
   - One commit per task; the message says why.
   - No mass rewrites or restores near the end.
   - Commits stay local. If git cannot commit, keep working and log each finished task with `date` in docs/worklog.md.
 
+## Running the server (main agent)
+The user sees only what is running. Listen on 0.0.0.0, port 3000; the page the user opens is always on port 3000.
+- Start it yourself in the background as soon as anything is viewable, after any change that needs a restart, and whenever the user asks:
+  - Linux: `[ -f .server.pid ] && kill "$(cat .server.pid)"; nohup <start command> > .server.log 2>&1 & echo $! > .server.pid`
+  - Windows: `Start-Process -WindowStyle Hidden` with `-RedirectStandardOutput .server.log -RedirectStandardError .server.err`.
+- Check it: `curl -s -o /dev/null -w '%{http_code}' http://localhost:3000/`. On failure, read `tail -n 30 .server.log` and follow $debugging.
+- Then tell the user: "Browser preview, port 3000".
+- If the sandbox blocks the port or the process dies when the command returns, ask the user to approve. If it still fails, give them the one command to run in their own terminal.
+- Port 3000 already taken: stop only the process holding it (`ss -ltnp | grep :3000`), never every node process.
+
 ## Subagents
-- Spawn with task_name, agent_type (explorer, worker, or reviewer), and fork_turns "none". Pass no model or reasoning_effort; each role pins its own.
+- Roles loaded: spawn with task_name, agent_type (explorer, worker, or reviewer), and fork_turns "none". Pass no model or reasoning_effort; each role pins its own.
+- No agent_type on spawn_agent means the roles are not loaded. Tell the user once, then keep delegating: spawn with task_name, fork_turns "none", and the role's model and reasoning_effort (explorer gpt-6-luna medium, worker gpt-6.1-sol medium, reviewer gpt-6.1-sol high). Start the message with "Your role: follow developer_instructions in .codex/agents/<role>.toml."
+- No spawn_agent at all: do the work yourself and tell the user.
 - The message carries file paths, not pasted content.
-- If spawn_agent offers no agent_type, the roles are not loaded. Do the work yourself and tell the user.
 - A spawn costs about 40K tokens of context. Delegate tasks bigger than a few lines; do small edits yourself.
 
 ## Token discipline

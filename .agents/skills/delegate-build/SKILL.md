@@ -27,7 +27,7 @@ Take tasks one at a time, in plan order. The next task starts only after this on
    - Record the task base: `git rev-parse --short HEAD`.
    - Fill references/brief-template.md. Point to docs paths; never paste documents.
    - `spawn_agent` with task_name "t<n>", agent_type "worker", fork_turns "none", message = the brief.
-   - The role pins model and effort, so pass neither.
+   - The role pins model and effort, so pass neither. Without roles, spawn as AGENTS.md Subagents says.
 3. **While it runs.**
    - Integrate finished work or update docs.
    - If you are idle, call `wait_agent` in 5-10 minute stretches.
@@ -73,7 +73,8 @@ Take tasks one at a time, in plan order. The next task starts only after this on
 At most 2 at once, and only when the two tasks share no files and neither consumes the other's interfaces.
 
 ## Fallback
-If spawn_agent offers no agent_type, the roles are not loaded.
+If spawn_agent offers no agent_type, the roles are not loaded: dispatch and review as above, spawning as AGENTS.md Subagents says.
+If spawn_agent does not exist:
 1. Build each task yourself with $tdd.
 2. Review your own diff with references/task-review-template.md.
 3. Then commit.

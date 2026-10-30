@@ -26,6 +26,7 @@ Two fresh reviewers check the whole change along separate axes, so one axis cann
 5. Re-run the full suite and commit "fix: gate findings".
 
 ## Fallback
-If spawn_agent offers no agent_type, apply both requests yourself, one after the other, with the same output formats.
+If spawn_agent offers no agent_type, spawn both reviewers as AGENTS.md Subagents says (reviewer: gpt-6.1-sol, high).
+If spawn_agent does not exist, apply both requests yourself, one after the other, with the same output formats.
 
 Sources: mattpocock/skills code-review (two axes, fixed point, smell baseline); ponytail-review (priorities, concrete cases, output); obra/superpowers final whole-branch review; cloudflare security-audit (checker separate from author); affaan-m/ECC reviewer checklists.

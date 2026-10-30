@@ -6,7 +6,7 @@ Use this when the workspace has no package.json or starter code. Otherwise follo
 ```
 server/
   src/app.ts         createApp(db) returns the express app; no listen, so tests import it
-  src/index.ts       opens the DB, runs schema.sql, app.listen(PORT, '0.0.0.0')
+  src/index.ts       opens the DB, runs schema.sql, app.listen(Number(process.env.PORT ?? 3000), '0.0.0.0')
   src/routes/*.ts    HTTP only: validate input, call a service, map errors
   src/services/*.ts  domain rules (unit-tested)
   src/repos/*.ts     SQL only, parameterized
@@ -18,10 +18,11 @@ public/ or web/      UI, chosen below
 ## UI
 - One simple page:
   - plain HTML/JS in public/, served by express.static.
-  - One process, one port.
+  - One process on port 3000.
 - Several screens or client state:
   - Vite + React in web/.
-  - In vite.config: `server: { host: true, allowedHosts: ['.e2b.app', '.e2b.dev'], proxy: { '/api': 'http://localhost:3000' } }`
+  - The user still opens port 3000, so Vite takes it and the API moves to 3001 (`PORT=3001`).
+  - In vite.config: `server: { host: '0.0.0.0', port: 3000, strictPort: true, allowedHosts: ['.e2b.app', '.e2b.dev'], proxy: { '/api': 'http://localhost:3001' } }`
   - Without allowedHosts, Vite 6+ rejects the preview hostname with "Blocked request. This host is not allowed."
 - Every screen:
   - shows empty, loading, and error states

@@ -154,7 +154,9 @@ codex -m gpt-6.1-sol -c model_reasoning_effort="medium" --disable computer_use -
 | 모델 이름이 다름 | `sed -i 's/gpt-6.1-sol/<실제 이름>/' .codex/agents/*.toml` |
 | git clone 불가 | `curl -L https://github.com/Ju-unn/codex-lean-kit/archive/refs/heads/main.tar.gz \| tar xz -C /tmp && sh /tmp/codex-lean-kit-main/install.sh` |
 | install.sh 실패 | `mkdir -p .agents .codex && cp -r /tmp/kit/.agents/skills .agents/ && cp -r /tmp/kit/.codex/agents .codex/` 실행. AGENTS.md는 복사하거나 기존 파일 뒤에 붙임 |
-| 서브에이전트를 쓸 수 없음 | 스킬마다 대안이 있음: 같은 절차를 메인이 직접 수행 |
+| Codex가 "agent_type 인자가 없다"고 함 | 역할이 로드되지 않은 것. 흔한 원인: 설치 전에 codex를 켬, 작업 공간 루트가 아닌 곳(아이콘 실행 등)에서 켬, trust를 안 고름. → 작업 공간 루트에서 codex 재시작 + trust, 그래도 0이면 첫 줄 조치. 그동안 키트는 역할 파일의 모델·effort를 직접 지정해 계속 위임함(실측: explorer가 gpt-6-luna/medium으로 뜸) |
+| `spawn_agent` 자체가 없음 | 스킬마다 대안이 있음: 같은 절차를 메인이 직접 수행 |
+| 웹 페이지가 안 보임 | "서버 실행해줘"라고 요청. 키트는 0.0.0.0:3000에 백그라운드로 띄우고 curl로 확인함. 미리보기에 포트 3000 입력. 그래도 안 되면 `curl localhost:3000`, `tail .server.log`, Vite면 allowedHosts 확인 |
 
 ## 7. 쓰지 않는 것
 - **규정**:

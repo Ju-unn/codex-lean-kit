@@ -25,7 +25,7 @@ If you haven't run the verification command in this turn, you cannot claim it pa
 |---|---|---|
 | Tests pass | test output: 0 failures | an earlier run, "should pass" |
 | Type check clean | tsc output: 0 errors | tests passing |
-| Server works | started on 0.0.0.0, curl returns the expected body | "it compiled" |
+| Server works | running on 0.0.0.0:3000, curl returns the expected body | "it compiled" |
 | Bug fixed | the original symptom re-tested and gone | code changed |
 | Worker finished | git diff shows the change | the worker said so |
 | Requirements met | line-by-line R-n checklist | tests passing |
@@ -38,7 +38,7 @@ Red flags:
 
 ## 1. Evidence
 Run these now, and record the result lines in docs/worklog.md.
-- Type check, full test suite, smoke: start the server on 0.0.0.0, curl the main endpoints, stop it.
+- Type check, full test suite, smoke: restart the server on 0.0.0.0:3000 as AGENTS.md says, curl the main endpoints, and leave it running for the user's preview.
 - Mark each check PASS, FAIL, or NOT_RUN, with its command. A check that never ran is NOT_RUN, never PASS.
 - Requirements: re-read docs/requirements.md. Map every MVP R-n to done, partial, or not done, with its evidence (test, file, or commit).
 
@@ -54,7 +54,7 @@ Write docs/REPORT.md in Korean, from assets/report-template.md.
 3. Check that the required files from the task README exist and are saved, and that `git status` is clean.
 4. Remind the user:
    - Start submitting 10 minutes before the end.
-   - The Browser preview check is theirs to do.
+   - The server is running on port 3000. They open the Browser preview and check the main screen themselves.
 
 ## 4. Weak-spot brief
 The user reads this; it is not for memorizing.

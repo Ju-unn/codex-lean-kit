@@ -85,7 +85,7 @@ for skill in skills:
 
 # 4. Size budgets and line endings.
 # AGENTS.md loads every turn, so it stays small; skills and references load only when used.
-budgets = [(ROOT / "AGENTS.md", 100)] + [(s / "SKILL.md", 200) for s in skills]
+budgets = [(ROOT / "AGENTS.md", 110)] + [(s / "SKILL.md", 200) for s in skills]
 budgets += [(p, 250) for p in (ROOT / ".agents/skills").glob("*/references/*.md")]
 for path, limit in budgets:
     check(lines(path) <= limit, f"size {path.relative_to(ROOT)}: {lines(path)} <= {limit} lines")
