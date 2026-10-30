@@ -19,7 +19,9 @@ This kit holds process only, no application code. The task README and any files 
 - Never overwrite the task README.md. Kit documents live in docs/.
 
 ## Phases
-Run `date` at every phase boundary and compare it with the start time in docs/worklog.md.
+Total time is the limit in the task README, else 180 minutes. The minutes below are for 180; scale them to the total.
+The platform ends the session at the limit. Finish before it, and never ask whether to continue past it.
+Run `date` at every phase boundary, after every requirements round, and after every build task, and compare it with the start time in docs/worklog.md.
 
 | min | phase | skill | done when |
 |---|---|---|---|

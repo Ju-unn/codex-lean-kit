@@ -23,9 +23,9 @@
   - CASCADE only for children the parent owns.
   - SET NULL only when the child stays meaningful without its parent.
 - NOT NULL unless absence has a meaning.
-- UNIQUE for natural identifiers (email, code), and for one-of rules ("one pending request per shift": a partial unique index).
+- UNIQUE for natural identifiers (email, code), and for one-of rules ("one active booking per room and hour": a partial unique index).
 - CHECK for value rules (qty > 0, end_at > start_at).
-- History that must survive (payroll, audit): never hard-delete. Use status columns or append-only tables.
+- History that must survive (orders, audit logs): never hard-delete. Use status columns or append-only tables.
 
 ## Indexes
 - Index every foreign key used in joins or lookups.
