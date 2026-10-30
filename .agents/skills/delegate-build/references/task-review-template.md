@@ -29,7 +29,7 @@ Part 2, code quality:
 - Separation of concerns, error handling, no duplicated logic, edge cases
 - Tests: verify real behaviour with independent expected values; cover the task's edge cases
 - Structure: each file has one clear responsibility and follows the plan's file structure
-- Layout, per .agents/skills/lean-plan/references/stack-ts.md: imports go route → service → domain and repo, never into another feature's route or repo; SQL only in repo files; domain/ imports nothing outside domain/; functions up to 30 lines. Each break is Important; quote the line.
+- Layout, when docs/plan.md follows .agents/skills/lean-plan/references/stack-ts.md: imports go route → service → domain and repo, never into another feature's route or repo; a feature's SQL only in its repo file (schema.sql and the shared/db transaction helper are fine); domain/ imports nothing outside domain/; functions up to 30 lines. Each break is Important; quote the line.
 - Security: validation at the boundary, parameterized SQL, access checks, no secrets
 
 Calibration:

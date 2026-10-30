@@ -52,12 +52,12 @@ AI 실무 평가(Krafton Cofa Probe)는 결과물만이 아니라 **일하는 �
 
 | 원본에서 뺀 것 | 이유 |
 |---|---|
-| worktree, 통합 브랜치, 이슈 트래커 (SDD, implement-spec, to-tickets) | push 금지 환경. worker를 한 번에 하나씩 돌리므로 분리가 필요 없음 |
+| worktree, 통합 브랜치, 이슈 트래커 (SDD, implement-spec, to-tickets) | push 금지 환경. worker는 많아야 2개를, 서로 겹치지 않는 파일에만 돌리므로 분리가 필요 없음 |
 | 질문을 메시지당 하나씩 (brainstorming) | 시간 제한. 대신 grilling의 "라운드마다 열린 질문 전부" 방식을 씀 |
 | 6단계 전체 보안 감사 (cloudflare) | 수 시간짜리 감사 절차. 검증 원칙과 공격 유형만 가져옴 |
 | graphify | 큰 기존 코드베이스용. README만 있는 빈 작업 공간에는 효과가 없음 |
 | ponytail 플러그인·훅 설치 | 훅은 `/hooks` 신뢰가 필요하고 Codex 설정을 바꾼다(시험 규칙 위험). 원본이 안내하는 훅 없는 방식대로 ponytail AGENTS.md 원문을 그대로 AGENTS.md에 넣음 |
-| 1% 규칙으로 모든 스킬 강제 호출 (using-superpowers) | 상황 스킬(tdd, debugging, handoff, 담당자 답변)만 자동으로 쓰고, 단계 전환은 Codex가 제안하고 사람이 정함(AGENTS.md "Skill use") |
+| 1% 규칙으로 모든 스킬 강제 호출 (using-superpowers) | 상황 스킬(tdd, debugging, handoff, ui-design, data-check, 담당자 답변)만 자동으로 쓰고, 단계 전환은 Codex가 제안하고 사람이 정함(AGENTS.md "Skill use") |
 
 참고 문서(필요할 때만 읽힘):
 - `lean-plan/references/stack-ts.md`, `lean-plan/references/data-model.md`

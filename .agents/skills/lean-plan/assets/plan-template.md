@@ -41,7 +41,7 @@ Extends to: Later R- → files it would change
 - Files: create `` · modify `` · test ``
 - Interfaces: consumes — · produces `name(params): Return`
 - Tests: `test name` → expects ``
-- Steps: failing test → run, expect FAIL "" → implement → run, expect PASS → commit
+- Steps: failing test → run, expect FAIL "" → implement → run, expect PASS → report (the controller commits)
 - Done when:
 - Status: [ ] · commits: · review:
 

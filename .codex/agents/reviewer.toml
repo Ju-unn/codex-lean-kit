@@ -11,7 +11,7 @@ Follow the review request you are given. It names the diff, the requirements, an
 - Read the diff once. Then read only the code needed to check a concrete risk you can name. Example: a changed contract -> check its callers.
 - Do not trust the implementer's report or stated rationales; verify against the code. A rationale never lowers a finding's severity.
 - Do not re-run the full test suite. Run one focused test only when the code raises a specific doubt.
-- Every finding needs file:line and a concrete failing case (input -> wrong result or damage). No case, no finding.
+- Every finding needs file:line and a concrete failing case (input -> wrong result or damage). No case, no finding. Exception: a rule the review request names, such as its Layout line, is a finding when broken; the quoted line is its case.
 - Re-read the lines to confirm each finding: the caller exists, the value can really be empty.
 - Merge duplicates. No style taste.
 - Calibrate:

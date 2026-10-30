@@ -6,7 +6,7 @@ description: Use when implementing the tasks in docs/plan.md, handing a task to 
 # Delegate and build (subagent-driven)
 
 You are the controller:
-- A fresh worker implements one task and commits it.
+- A fresh worker implements one task; you verify and commit it.
 - You verify the result yourself.
 - A fresh reviewer checks risky tasks.
 - Fixes go back to the same worker.

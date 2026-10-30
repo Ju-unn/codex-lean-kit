@@ -34,7 +34,7 @@ codex -m gpt-6.1-sol -c model_reasoning_effort="medium" --disable computer_use -
 | 종류 | 스킬 | 동작 |
 |---|---|---|
 | 상황 스킬 | `$tdd`, `$debugging`, `$handoff`, `$ui-design`(화면 작업 전), `$data-check`(데이터 파일이 있을 때), 담당자 답변을 받았을 때의 `$requirements-interview` | 이름을 부르지 않아도 Codex가 씁니다 |
-| 단계 스킬 | `$requirements-interview`, `$lean-plan`, `$delegate-build`, `$quality-gate`, `$verify-and-wrap` | 단계가 끝나거나 시간이 되면 Codex가 다음 스킬을 제안하고 기다립니다. 내가 `진행해` 또는 `$스킬`로 답합니다 |
+| 단계 스킬 | `$requirements-interview`, `$lean-plan`, `$delegate-build`, `$quality-gate`, `$verify-and-wrap` | 단계가 끝나면 Codex가 다음 스킬을 제안하고 기다립니다. 내가 `진행해` 또는 `$스킬`로 답합니다 |
 
 - 모든 답변의 마지막 줄에 `[사용한 스킬: … | 다음: …]`이 붙습니다. 무엇을 썼고 다음에 무엇을 할지 보입니다.
 - 실측 (Codex 0.165, 10/30)
@@ -75,11 +75,11 @@ $verify-and-wrap → ($handoff)                 → REPORT
 ### `/new` 뒤에 일어나는 일
 새 세션은 이 대화를 모릅니다. 그래서 파일로 이어받습니다.
 1. AGENTS.md를 읽습니다(자동).
-2. `docs/HANDOFF.md`를 다른 일보다 먼저 읽고, 그 안의 "먼저 읽을 것"(requirements, plan, materials)을 읽습니다.
+2. `docs/HANDOFF.md`를 다른 일보다 먼저 읽고, 그 안의 "먼저 읽을 것"(requirements, plan, qna)을 읽습니다.
 3. `git log`와 `git status`로 인계 문서가 실제 상태와 맞는지 확인합니다.
 4. 지금 위치, 다음 단계, 쓸 스킬을 3줄로 보고하고 내 신호를 기다립니다.
 
-실측 (Codex 0.165, 10/30): 새 세션에 `이어서 할게. 어디까지 했지?`만 입력했습니다. HANDOFF → requirements → plan → materials → worklog → git log → git status 순서로 읽었고, "계획 승인 완료, 다음은 `$delegate-build`로 T1"이라고 보고한 뒤 기다렸습니다. 합의에는 있는데 계획에서 빠진 기능(취소)도 찾아냈습니다.
+실측 (Codex 0.165, 10/30): 새 세션에 `이어서 할게. 어디까지 했지?`만 입력했습니다. HANDOFF → requirements → plan → materials(지금은 qna.md) → worklog → git log → git status 순서로 읽었고, "계획 승인 완료, 다음은 `$delegate-build`로 T1"이라고 보고한 뒤 기다렸습니다. 합의에는 있는데 계획에서 빠진 기능(취소)도 찾아냈습니다.
 
 `/new`는 HANDOFF를 쓴 직후에 입력합니다. 서브에이전트가 돌고 있을 때는 입력하지 않습니다.
 

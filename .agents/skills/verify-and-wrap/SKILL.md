@@ -54,12 +54,12 @@ Write docs/REPORT.md in Korean, from assets/report-template.md.
 1. Commit "docs: report".
 2. Run $handoff for the final handoff to the next person.
 3. Check that the required files from the task README exist and are saved, and that `git status` is clean.
-4. Draft the result message the user sends to the stakeholder: one copyable block, at most 5 lines of plain Korean without system words. What was built, how to open and use it, the limits they must know, the next step.
+4. Draft the result message the user sends to the stakeholder: one copyable block, at most 5 lines of plain Korean in the stakeholder's words, with no R-n or T-n IDs, file names, or commands. What was built, how to open and use it, the limits they must know, the next step.
 5. Remind the user:
    - The server stays running; they check the main screen in the preview themselves.
 
 ## 4. Weak-spot brief
-The user reads this; it is not for memorizing.
+The user reads this; it is not for memorizing. Show items 1-3 in your reply before the first question.
 1. Flow map, 5 lines at most: input → processing → output for the main use case, naming the files and functions on the way.
 2. Decisions the user changed: 2-3 cases from docs/qna.md [결정] entries and docs/plan.md Decisions, each as "AI proposed → the user chose → why". Use only cases in the record; never invent one.
 3. For each core part, write 3 lines: weakness → impact → what to verify next.

@@ -6,7 +6,7 @@ This kit holds process only, no application code. The task README and any files 
 ## Roles
 - The user is the decision-maker. Put every decision to the user: scope, technical choices, trade-offs.
 - A stakeholder agent holds the business facts, rules, and materials. You cannot reach it. The user relays your questions and material requests and pastes back the answers. Label each question [담당자], [자료], or [결정].
-- Main agent: talks with the user, writes docs/, spawns subagents, verifies their work, keeps time.
+- Main agent: talks with the user, writes docs/, spawns subagents, verifies their work.
 - worker: implements one task test-first and reports its files. The main agent commits.
 - explorer, reviewer: read only. They never edit or commit.
 - Every subagent: never commit, push, spawn agents, install packages, or start long-running servers.
