@@ -1,6 +1,6 @@
 ---
 name: verify-and-wrap
-description: Use when about 25 minutes remain, when the work is feature-complete, before claiming anything is done, fixed, or passing, or when preparing submission. Main agent only.
+description: Use when the work is feature-complete, before claiming anything is done, fixed, or passing, or when preparing submission. Main agent only.
 ---
 
 # Verify and wrap
@@ -53,7 +53,6 @@ Write docs/REPORT.md in Korean, from assets/report-template.md.
 2. Run $handoff for the final handoff to the next person.
 3. Check that the required files from the task README exist and are saved, and that `git status` is clean.
 4. Remind the user:
-   - Start submitting 10 minutes before the end.
    - The server stays running on port 3000; they check the main screen in the preview themselves.
 
 ## 4. Weak-spot brief

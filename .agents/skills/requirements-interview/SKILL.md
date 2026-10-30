@@ -79,10 +79,9 @@ For question stems by technique, read references/question-techniques.md.
 - The frontier is empty: every branch visited, nothing silently assumed.
 - The stakeholder has confirmed the Agreement block, and the user has made the open [결정] calls.
 
-## Timebox
-After every round, check `date` against the end of the requirements phase in AGENTS.md, scaled to the total time. Once it has passed:
-- Open no new round. Every open item becomes an explicit A-n with your recommended default.
-- Say so in one line, and name $lean-plan as the next step.
+## When the user moves on early
+The user may end the interview before the frontier is empty:
+- Every open item becomes an explicit A-n with your recommended default.
 - The remaining questions continue during the build. The user asks them while workers run.
 
 Sources: mattpocock/skills grilling (design tree, frontier rounds, recommended answers, facts are your job, decisions are the user's) and to-questionnaire (one idea per question); juxt/allium elicit (process discovery, scope, obstacles, assumptions); Cofathon top-performer practice (agreement block, no solution words early).

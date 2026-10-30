@@ -20,7 +20,7 @@ Replace the file each time. Korean, 30 lines at most.
 
 For the next session:
 - Read first: the files the next step needs, in order. Usually docs/requirements.md (Agreement, R-n), docs/plan.md (next T-n, Global constraints), and docs/materials/ for exact values.
-- Phase, the time from `date`, minutes left; the start time is in docs/worklog.md
+- Phase and the time from `date`
 - Done: the latest commits (short hash + subject)
 - In progress: T-n, who is on it, its state
 - Next 3 steps, and the skill to use next

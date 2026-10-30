@@ -19,24 +19,22 @@ This kit holds process only, no application code. The task README and any files 
 - Never overwrite the task README.md. Kit documents live in docs/.
 
 ## Phases
-Total time is the limit in the task README, else 180 minutes. The minutes below are for 180; scale them to the total.
-The platform ends the session at the limit. Finish before it, and never ask whether to continue past it.
-Run `date` at every phase boundary, after every requirements round, and after every build task, and compare it with the start time in docs/worklog.md.
+Phases move on when their done-when is met, never because of the clock. The platform ends the session, not you: never stop, cut scope, or ask whether to continue because of time, even if the task README states a time limit.
 
-| min | phase | skill | done when |
-|---|---|---|---|
-| 0-10 | setup | (below) | baseline commit exists |
-| 10-35 | requirements | $requirements-interview | Agreement confirmed; remaining questions continue during build waits |
-| 35-55 | plan | $lean-plan, then $handoff | plan approved, docs/HANDOFF.md written, user runs /new |
-| 55-135 | build | $delegate-build with $tdd and $debugging | MVP tasks pass their tests and reviews |
-| 135-155 | gate, feature freeze | $quality-gate | Must findings fixed |
-| 155-170 | wrap | $verify-and-wrap, then $handoff | REPORT.md and HANDOFF.md match code and commits |
-| 170-180 | submit | - | user submits |
+| phase | skill | done when |
+|---|---|---|
+| setup | (below) | baseline commit exists |
+| requirements | $requirements-interview | Agreement confirmed; remaining questions continue during build waits |
+| plan | $lean-plan, then $handoff | plan approved, docs/HANDOFF.md written, user runs /new |
+| build | $delegate-build with $tdd and $debugging | MVP tasks pass their tests and reviews |
+| gate, feature freeze | $quality-gate | Must findings fixed |
+| wrap | $verify-and-wrap, then $handoff | REPORT.md and HANDOFF.md match code and commits |
+| submit | - | user submits |
 
-From minute 155: fixes and docs only.
+From the gate on: fixes and docs only.
 
 ## Skill use (main agent)
-- Phase skills ($requirements-interview, $lean-plan, $delegate-build, $quality-gate, $verify-and-wrap): when a phase meets its done-when or its time is up, name the next skill and wait for the user's go. Phase changes are the user's decision.
+- Phase skills ($requirements-interview, $lean-plan, $delegate-build, $quality-gate, $verify-and-wrap): when a phase meets its done-when, name the next skill and wait for the user's go. Phase changes are the user's decision.
 - Use these without being asked: $requirements-interview when stakeholder answers or materials arrive, $tdd before changing behaviour, $debugging on any failure, $handoff when the conversation is getting long.
 - If the user asks for a phase without naming its skill, read that skill's SKILL.md first.
 - The last line of every reply to the user, after the skipped/risk lines: `[사용한 스킬: <skills whose SKILL.md you followed this turn, or 없음> | 다음: <next step or skill>]`
@@ -47,7 +45,7 @@ In a new session, if docs/HANDOFF.md exists, read it before anything else, then 
 - Make sure the server is up if the app has one.
 - Report in 3 lines: where we are, the next step, the skill. Then wait for the user's go.
 
-## Setup (main agent, minute 0)
+## Setup (main agent, first)
 1. Inspect: `ls -la`, `git status`, README.md, existing stack or starter code. Follow what exists.
 2. `git init` if needed. Add .gitignore: node_modules, dist, .env, *.db. If git identity is missing, ask the user, then set it repo-local.
 3. Commit "chore: baseline + process-only kit (github.com/Ju-unn/codex-lean-kit)", then `git branch baseline`.

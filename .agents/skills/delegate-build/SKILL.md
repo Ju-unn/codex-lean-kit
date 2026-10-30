@@ -60,7 +60,6 @@ Take tasks one at a time, in plan order. The next task starts only after this on
    - Give the user a 3-line walkthrough: what changed · why this way · one risk.
    - Tick the task in docs/plan.md.
    - Add one line to docs/worklog.md: T-n, commits, test count, review verdict.
-   - Check `date`. Once the build phase has ended (AGENTS.md, scaled), start no new task and name $quality-gate as the next step.
 
 ## Failures and surprises
 - A failing test or unexpected behaviour: use $debugging before any fix.
@@ -68,7 +67,7 @@ Take tasks one at a time, in plan order. The next task starts only after this on
   1. Add an R-n to docs/requirements.md first.
   2. If MVP-critical, add a new T-n; otherwise put it under Later.
   3. Tell the user the time cost.
-- Every MVP task passes before minute 125 (of 180, scaled): take Later items one at a time, through the same loop.
+- Every MVP task passes: tell the user, and offer $quality-gate (recommended: a reviewed state exists before more features) or Later items one at a time through the same loop.
 
 ## Parallel workers
 At most 2 at once, and only when the two tasks share no files and neither consumes the other's interfaces.

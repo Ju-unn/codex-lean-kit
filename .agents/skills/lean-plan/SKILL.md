@@ -18,8 +18,8 @@ Everything else is theirs to decide. DRY. YAGNI. TDD. A commit per task.
 ## Output: docs/plan.md, from assets/plan-template.md
 
 ### 1. Scope
-- MVP: the R-n that fit in 60% of the remaining build time, chosen by the stakeholder's priorities.
-- Later: everything else, with a one-line reason each. Later items come back if time allows.
+- MVP: the R-n the success metric depends on, chosen by the stakeholder's priorities. Build these first.
+- Later: everything else, with a one-line reason each. Later items come after the MVP passes.
 
 ### 2. Architecture: two options, one recommendation
 Compare two options against the R-n they serve: cost, risk, what each makes hard. Recommend one.
