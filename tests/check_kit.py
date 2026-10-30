@@ -66,7 +66,7 @@ for role in roles:
 
 # 3. Skills: frontmatter, links, Codex's own validator when available.
 skills = sorted(p.parent for p in (ROOT / ".agents/skills").glob("*/SKILL.md"))
-check(len(skills) == 9, f"9 skills ({[s.name for s in skills]})")
+check(len(skills) == 10, f"10 skills ({[s.name for s in skills]})")
 for skill in skills:
     fm = frontmatter(skill / "SKILL.md")
     desc = fm.get("description", "")

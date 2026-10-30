@@ -12,6 +12,7 @@ Judge load against docs/requirements.md (number of users, data size), and say wh
 Read and apply these checklists:
 - .agents/skills/quality-gate/references/security.md
 - .agents/skills/lean-plan/references/data-model.md
+- .agents/skills/data-check/SKILL.md sections 2-4, when the task has data files
 - .agents/skills/quality-gate/references/overengineering.md
 
 Look for, in this order:

@@ -14,7 +14,7 @@ codex -m gpt-6.1-sol -c model_reasoning_effort="medium" --disable computer_use -
 1. 키트는 **작업 공간 밖**(`/tmp/kit`)에 clone합니다. 밖에 둔 clone은 지우지 않습니다. 끝까지 `cat /tmp/kit/GUIDE.md`로 이 설명서를 볼 수 있습니다.
    - Codex에 시킬 때는 위치를 정해 줍니다: `키트를 /tmp/kit에 clone하고 여기서 install.sh를 실행해줘.`
    - 작업 공간 **안**에 clone됐다면 설치한 뒤 그 폴더만 지웁니다. 기준선 커밋에 키트 저장소가 섞이지 않게 하기 위해서입니다.
-2. 설치되는 것: `AGENTS.md`, `.agents/skills/`(스킬 9개), `.codex/agents/`(역할 3개). 과제 README.md와 기존 파일은 건드리지 않습니다.
+2. 설치되는 것: `AGENTS.md`, `.agents/skills/`(스킬 10개), `.codex/agents/`(역할 3개). 과제 README.md와 기존 파일은 건드리지 않습니다.
 3. codex는 **설치한 다음에** 켭니다. 키트는 codex가 켜질 때 읽힙니다. 이미 켜져 있었다면 끄고 다시 켭니다.
 4. 신뢰를 물으면 **trust**를 고릅니다. 역할 3개는 trust한 폴더에서만 로드됩니다.
 5. 다른 터미널에서 역할을 확인합니다(토큰을 쓰지 않음).
@@ -24,7 +24,7 @@ codex -m gpt-6.1-sol -c model_reasoning_effort="medium" --disable computer_use -
 
 처음 쓰는 환경이라면 더 확인합니다.
 - 버전: `node --version && git --version && python3 --version && codex --version`
-- `$`를 입력하면 스킬 9개가 팝업으로 뜹니다.
+- `$`를 입력하면 스킬 10개가 팝업으로 뜹니다.
 - 미리보기: `node -e "require('http').createServer((q,s)=>s.end('ok')).listen(3000,'0.0.0.0')"`를 실행하고 포트 3000으로 확인합니다(Ctrl+C로 종료).
 - 플랫폼 도우미가 있으면 공개 스킬 적용 방법을 묻습니다. 안내가 다르면 그 안내를 따릅니다.
 
@@ -33,7 +33,7 @@ codex -m gpt-6.1-sol -c model_reasoning_effort="medium" --disable computer_use -
 
 | 종류 | 스킬 | 동작 |
 |---|---|---|
-| 상황 스킬 | `$tdd`, `$debugging`, `$handoff`, `$ui-design`(화면 작업 전), 담당자 답변을 받았을 때의 `$requirements-interview` | 이름을 부르지 않아도 Codex가 씁니다 |
+| 상황 스킬 | `$tdd`, `$debugging`, `$handoff`, `$ui-design`(화면 작업 전), `$data-check`(데이터 파일이 있을 때), 담당자 답변을 받았을 때의 `$requirements-interview` | 이름을 부르지 않아도 Codex가 씁니다 |
 | 단계 스킬 | `$requirements-interview`, `$lean-plan`, `$delegate-build`, `$quality-gate`, `$verify-and-wrap` | 단계가 끝나거나 시간이 되면 Codex가 다음 스킬을 제안하고 기다립니다. 내가 `진행해` 또는 `$스킬`로 답합니다 |
 
 - 모든 답변의 마지막 줄에 `[사용한 스킬: … | 다음: …]`이 붙습니다. 무엇을 썼고 다음에 무엇을 할지 보입니다.
@@ -63,7 +63,7 @@ $verify-and-wrap → ($handoff)                 → REPORT
 | 계획 | `$lean-plan 계획 세워줘.` | 승인 후 HANDOFF 작성 | 구조 2안 중 고르기, 범위 승인, `/new` 입력 |
 | 구현 | `$delegate-build T1부터 진행해.` | MVP 작업이 테스트와 리뷰 통과 | 승인 요청 확인, 작업마다 나오는 3줄 설명 읽기, 기다리는 동안 남은 질문 |
 | 점검 (기능 동결) | `$quality-gate 최종 리뷰해줘.` | Must 수정 완료 | Must와 나머지 나누기, 화면 직접 확인 |
-| 마무리 | `$verify-and-wrap 검증하고 REPORT 작성해. 예상 질문으로 나를 점검해줘.` | REPORT와 HANDOFF가 코드·커밋과 맞음 | 예상 질문에 내 말로 답하기 |
+| 마무리 | `$verify-and-wrap 검증하고 REPORT 작성해. 예상 질문으로 나를 점검해줘.` | REPORT와 HANDOFF가 코드·커밋과 맞음 | 결과 메시지를 담당자에게 보내기, 예상 질문에 내 말로 답하기 |
 | 제출 | — | 제출 완료 | 필수 파일과 저장 상태 확인 |
 
 ### 시간
@@ -92,8 +92,11 @@ $verify-and-wrap → ($handoff)                 → REPORT
 | 테스트가 실패하거나 버그가 났다 | `$debugging 원인부터 찾아줘. 고치기 전에 원인과 변경 범위를 알려줘.` |
 | 작은 수정을 바로 하고 싶다 | `$tdd <무엇을> 고쳐줘.` |
 | 화면을 처음 만들거나 디자인을 바꾼다 | 자동으로 `$ui-design`. Codex가 **스타일·색·폰트를 [결정] 질문으로 물음**(추천안 포함). 내가 고르거나 `추천대로`라고 하면 `docs/design.md`에 저장하고, 화면은 그 색·폰트 변수를 씀 |
-| 화면이 안 보인다 | `서버 실행해줘.` (0.0.0.0에서 과제가 정한 포트, 없으면 3000으로 계속 돌고, `/ps`로 보임) |
+| 데이터 파일(CSV 등)이 있다 | 자동으로 `$data-check`. 한 행의 의미·분모·재검사를 먼저 정하고, 모르는 것은 담당자 질문으로 나옴. 핵심 숫자는 다른 방법으로 한 번 더 계산 |
+| 화면이 안 보인다 | `서버 실행해줘.` (0.0.0.0에서 과제가 정한 포트, 없으면 3000으로 계속 돌고, `/ps`로 보임). Browser 탭의 PORT 칸에 그 포트, URL 칸에 경로를 넣고 원형 화살표. 3000과 `/`는 예시일 뿐 고정이 아님 |
+| 에디터에 저장 충돌 표시 | 에디터에서 직접 고친 게 없으면 **"외부 변경 불러오기"**(Codex가 바꾼 내용을 가져옴). "현재 내용으로 저장"은 에디터 내용으로 덮어써서 Codex 수정이 사라짐 |
 | "Selected model is at capacity" | 잠시 뒤 다시 보내기. 계속되면 `/model`에서 `gpt-6-sol`(medium) |
+| `npm install`이 안 됨 | 승인 후 한 번 다시 시도. 그래도 안 되면 키트가 Node 내장 기능으로 바꿔 진행함 |
 | 대화가 길어졌다 (`/status`의 남은 컨텍스트가 40% 아래) | `$handoff` 다음 `/new`, 그리고 `docs/HANDOFF.md를 읽고 이어서 진행해.` |
 | 지금 무엇을 할 차례인지 모르겠다 | `지금 단계와 다음에 쓸 스킬을 알려줘.` |
 | 방금 바뀐 코드를 이해 못 했다 | `방금 바뀐 것을 무엇 → 왜 → 위험 3줄로 설명해줘.` |

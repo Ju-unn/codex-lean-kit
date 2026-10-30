@@ -19,6 +19,10 @@
 | ID | Assumption | Why | Revisit if |
 |---|---|---|---|
 
+## Data contract (only when the task has data files; see $data-check)
+| File | One row means | Key | Units and time | Numerator / denominator | Duplicates, retests, missing |
+|---|---|---|---|---|---|
+
 ## Open questions
 -
 

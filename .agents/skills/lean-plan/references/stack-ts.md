@@ -67,6 +67,14 @@ The main agent installs them once.
   - `node:sqlite` DatabaseSync when `node --version` is 22.13 or later (no dependency; verified under vitest 5).
   - Otherwise better-sqlite3.
 
+### If npm install fails
+After one retry with the user's approval, drop the packages instead of working around a blocked network or registry:
+- Server: node:http with a small route table; createApp(db, clock) returns the request handler, index.mjs listens.
+- DB: node:sqlite. Below Node 22.13, a JSON file with whole-file writes, stated as a limit in REPORT.
+- Tests: node:test and node:assert, run with `node --test`. Start the app on port 0 and call it with fetch.
+- Validation: hand-written checks at the route boundary, one function per input shape.
+- Plain .mjs files, no build step. Record the switch in docs/plan.md Decisions.
+
 ## Scripts
 `"dev": "tsx watch src/index.ts"`, `"test": "vitest run"`, `"typecheck": "tsc --noEmit"`
 

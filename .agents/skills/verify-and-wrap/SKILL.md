@@ -29,6 +29,7 @@ If you haven't run the verification command in this turn, you cannot claim it pa
 | Bug fixed | the original symptom re-tested and gone | code changed |
 | Worker finished | git diff shows the change | the worker said so |
 | Requirements met | line-by-line R-n checklist | tests passing |
+| Numbers correct | recomputed by a second method, one case checked by hand ($data-check) | the code ran |
 
 Red flags:
 - "should", "probably", "seems to"
@@ -53,18 +54,22 @@ Write docs/REPORT.md in Korean, from assets/report-template.md.
 1. Commit "docs: report".
 2. Run $handoff for the final handoff to the next person.
 3. Check that the required files from the task README exist and are saved, and that `git status` is clean.
-4. Remind the user:
+4. Draft the result message the user sends to the stakeholder: one copyable block, at most 5 lines of plain Korean without system words. What was built, how to open and use it, the limits they must know, the next step.
+5. Remind the user:
    - The server stays running; they check the main screen in the preview themselves.
 
 ## 4. Weak-spot brief
 The user reads this; it is not for memorizing.
-1. For each core part, write 3 lines: weakness → impact → what to verify next.
-2. Ask the user 5 likely follow-up questions, one at a time:
+1. Flow map, 5 lines at most: input → processing → output for the main use case, naming the files and functions on the way.
+2. Decisions the user changed: 2-3 cases from docs/qna.md [결정] entries and docs/plan.md Decisions, each as "AI proposed → the user chose → why". Use only cases in the record; never invent one.
+3. For each core part, write 3 lines: weakness → impact → what to verify next.
+4. Ask the user 6 likely follow-up questions, one at a time, as in the exam. Give one of them a false premise, a feature or rule the code does not have, and check that they spot it.
    - Why this structure?
-   - What happens when X fails?
+   - How do you know the core feature works? Which test or recompute shows it?
+   - What happens when X fails, or when two users change the same record at once?
    - What was left out, and why?
+   - Which AI suggestion did you change or reject, and why?
    - How would you add one Later item, and which files change?
-3. Let them answer in their own words. Correct factual errors only.
-4. Include one question with a false premise, and check that they spot it.
+5. Let them answer in their own words. Correct factual errors only.
 
 Sources: obra/superpowers verification-before-completion (iron law, gate function, claims table); affaan-m/ECC verification-loop; ponytail-debt (shortcuts become stated limits).
