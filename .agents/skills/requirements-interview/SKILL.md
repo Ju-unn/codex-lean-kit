@@ -39,10 +39,18 @@ The frontier is every question whose prerequisites are settled: what you can ask
 - A question whose answer depends on another open question waits for a later round.
 - Settled answers push the frontier outward. Recompute it after every answer.
 
-Question format:
-`Q<n> [담당자|자료|결정] — <title>: <one idea, never compound> · why it changes the build · ➡ recommended answer (used as assumption A-n if unanswered)`
+Question format: one block per question with a blank line between blocks, so the user can copy the question line alone and send it as is.
+```
+Q4 [담당자] 예약 단위
+예약은 정각부터 1시간 단위로만 하나요, 30분 단위도 있나요?
+· 이유: 시간 선택과 겹침 검사 방식이 정해집니다.
+· 권장: 정각 1시간 단위 (답이 없으면 가정 A-n)
+```
+- Line 1: the Q-number, the label, a short title.
+- Line 2: the question itself. One idea, never compound, in words the stakeholder can answer as sent.
+- Then why it changes the build, and your recommended answer, used as assumption A-n if unanswered.
 
-Number the questions most important first. The user may send the [담당자] and [자료] questions in one message or split them by theme.
+Order: first the [담당자] and [자료] blocks the user relays, most important first. Then a heading "내가 정할 것" with the [결정] blocks. The user may send the relayed questions in one message or split them by theme.
 
 How the [담당자] questions unfold, from shallow to deep:
 - L0 map (the first message): which areas can the stakeholder answer, and which materials exist?
