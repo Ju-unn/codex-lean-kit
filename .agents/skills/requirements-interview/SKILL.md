@@ -41,10 +41,10 @@ The frontier is every question whose prerequisites are settled: what you can ask
 
 Question format: one block per question with a blank line between blocks, so the user can copy the question line alone and send it as is.
 ```
-Q4 [담당자] 예약 단위
-예약은 정각부터 1시간 단위로만 하나요, 30분 단위도 있나요?
-· 이유: 시간 선택과 겹침 검사 방식이 정해집니다.
-· 권장: 정각 1시간 단위 (답이 없으면 가정 A-n)
+Q4 [담당자] 중복 처리
+같은 건이 두 번 들어오면 먼저 들어온 것만 인정하나요, 둘 다 받나요?
+· 이유: 중복 검사와 저장 방식이 정해집니다.
+· 권장: 먼저 들어온 것만 인정 (답이 없으면 가정 A-n)
 ```
 - Line 1: the Q-number, the label, a short title.
 - Line 2: the question itself. One idea, never compound, in words the stakeholder can answer as sent.

@@ -13,7 +13,7 @@ A missing best practice, a guessed deployment behaviour, or a self-impact is not
 
 Severity anchors:
 - **critical**: an unauthenticated actor gains code execution, full data access, or takeover of other accounts.
-- **high**: an explicit control is fully defeated with real consequences. Examples: auth bypass, reading or writing another user's or store's data, stored script execution affecting other users.
+- **high**: an explicit control is fully defeated with real consequences. Examples: auth bypass, reading or writing another user's or organization's data, stored script execution affecting other users.
 - **medium**: a real boundary violation with a limited blast radius or uncommon preconditions.
 - **low**: disclosure of non-secret internals, or an effect that needs sustained effort for minimal gain.
 
