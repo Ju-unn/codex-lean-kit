@@ -5,7 +5,9 @@ description: Use when building, restyling, or reviewing anything the user will s
 
 # UI design
 
-Searchable local design data: styles, product palettes with reasoning rules, font pairings, UX guidelines, icons, chart types, and stack-specific guidance. It fits any task domain, because the query carries the domain.
+Searchable local design data: styles, product palettes with reasoning rules, font pairings, UX guidelines, icons, chart types, and stack-specific guidance.
+
+The user decides the look: style, colors, and fonts. The tool supplies options, component rules, and checks.
 
 Use it when the task changes how something looks, feels, moves, or is interacted with. Skip it for backend logic, API or database design, and scripts with no visible output.
 
@@ -51,32 +53,43 @@ For accessibility, search one observable outcome at a time, the semantic outcome
 
 ## Start here
 Check for a master: `ls docs/design-system/*/MASTER.md`.
-- None: do steps 1 and 2 before any screen code.
-- One: read it, and go to step 3.
+- None: do steps 1 to 3 before any screen code.
+- One: read it, and go to step 4.
+
+No screen code, stylesheet, or master before the user has answered the step 2 questions or said "추천대로". This holds even when the request says to build the screen now. If another design skill is listed (for example ui-ux-pro-max), follow this one; it is the kit's.
 
 ## Step 1: Read the requirements
 From docs/requirements.md and docs/plan.md:
-- Product type: dashboard, tool, admin panel, booking, tracker, portal, or a hybrid.
+- Product type: dashboard, form-heavy tool, admin panel, list and detail, portal, or a hybrid.
 - Users and context: who uses it, where, how often, on what device.
-- Style keywords from the stakeholder, if any.
+- Style words from the stakeholder or the user, if any.
 - Stack: the one in docs/plan.md.
 
-Most tasks here are working tools for staff or operators. Favor readable, high-contrast, scannable layouts over decorative styles, unless the stakeholder asks otherwise.
-
-## Step 2: Generate and save the design system (once)
-1. Preview:
+## Step 2: Ask the user (style, colors, fonts)
+1. Preview two contrasting directions, for example `--variance 3` and `--variance 7`, or two sets of style words:
    ```sh
-   python3 -X utf8 -B .agents/skills/ui-design/scripts/search.py "<product type> <domain> <keywords>" --design-system -f markdown -p "<Project>"
+   python3 -X utf8 -B .agents/skills/ui-design/scripts/search.py "<product type> <style words>" --design-system -f markdown -p "<Project>"
    ```
-   It combines product, style, color, landing, and typography matches with reasoning rules, and returns a pattern, style, colors, typography, effects, and anti-patterns.
-   - Dials: `--variance 1-10` (minimal to bold) and `--density 1-10` (spacious to dense; 6-8 suits data-heavy screens). Leave `--motion` unset: it attaches GSAP code, a dependency the plan does not have.
-   - Check the fit. If the style hurts readability for these users, such as glass effects on a data-heavy tool, re-run with other keywords or a lower variance.
-2. Save the chosen query: the same command plus `--persist --output-dir docs`.
-   - Done when docs/design-system/<slug>/MASTER.md exists.
-   - Never pass `--force` without the user's go.
-3. During $lean-plan, the style, palette, and fonts go into the plan, so the user approves them with it.
+   - `--density 1-10` sets spacious to dense. Leave `--motion` unset: it attaches GSAP code, a dependency the plan does not have.
+2. Ask three [결정] questions, one block each, a blank line between blocks:
+   ```
+   Q12 [결정] 화면 스타일
+   어떤 스타일로 할까요? 1) 밝고 간결한 목록형 2) 어두운 대시보드형 3) 직접 지정
+   · 이유: 배치, 여백, 배경이 이 선택으로 정해집니다.
+   · 권장: 1) (미리보기 스타일 이름)
+   ```
+   - Style: the previewed directions as numbered choices, plus "직접 지정".
+   - Colors: primary and accent, as hex or color names. Recommend the preview's.
+   - Fonts: the preview's pair, or system fonts only.
+3. Wait for the answers. During $lean-plan these questions go in the plan gate, and the answers go under Decisions.
 
-## Step 3: Build pages from the master
+## Step 3: Save the master
+1. Run the chosen direction again with `--persist --output-dir docs`. Never pass `--force` without the user's go.
+2. Set the Color Palette and Typography in docs/design-system/<slug>/MASTER.md to the user's answers.
+3. Check text contrast for every color and its on-color pair. Below 4.5:1, tell the user and propose the nearest shade that passes.
+4. Done when MASTER.md exists and matches the answers.
+
+## Step 4: Build pages from the master
 1. If docs/design-system/<slug>/pages/<page>.md exists, its rules override the master.
 2. The stylesheet starts with one `:root` block built from the master:
    - every Color Palette row as its CSS variable, for example `--color-primary: #0891B2;`
@@ -88,9 +101,9 @@ Most tasks here are working tools for staff or operators. Favor readable, high-c
 
 | Need | Domain | Example |
 |---|---|---|
-| Product type patterns | `product` | `"booking admin" --domain product` |
+| Product type patterns | `product` | `"admin dashboard" --domain product` |
 | More style options | `style` | `"minimal dark" --domain style` |
-| Color palettes | `color` | `"healthcare calm" --domain color` |
+| Color palettes | `color` | `"calm professional" --domain color` |
 | Font pairings | `typography` | `"modern readable" --domain typography` |
 | Individual Google Fonts | `google-fonts` | `"sans serif popular variable" --domain google-fonts` |
 | Chart recommendations | `chart` | `"real-time dashboard" --domain chart` |
@@ -130,4 +143,4 @@ Do not fabricate output.
 - Run the Pre-Delivery Checklist from MASTER.md. For mobile or native targets, also the one in references/pro-rules.md.
 - Report each item as done or not done, with the file it concerns.
 
-Sources: nextlevelbuilder/ui-ux-pro-max-skill (MIT): priority table, query contract, design-system workflow, master and page overrides, domains, 0-results rule, tips, checklists. The scripts, data, and references are copied unchanged, without the upstream's dev-only tests and three data files the search does not read.
+Sources: nextlevelbuilder/ui-ux-pro-max-skill (MIT): priority table, query contract, design-system workflow, master and page overrides, domains, 0-results rule, tips, checklists. The scripts, data, and references are copied unchanged, without the upstream's dev-only tests and three data files the search does not read. Changed: the user picks style, colors, and fonts.

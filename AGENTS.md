@@ -35,7 +35,7 @@ From the gate on: fixes and docs only.
 
 ## Skill use (main agent)
 - Phase skills ($requirements-interview, $lean-plan, $delegate-build, $quality-gate, $verify-and-wrap): when a phase meets its done-when, name the next skill and wait for the user's go. Phase changes are the user's decision.
-- Use these without being asked: $requirements-interview when stakeholder answers or materials arrive, $tdd before changing behaviour, $debugging on any failure, $handoff when the conversation is getting long, $ui-design before building or restyling a screen.
+- Use these without being asked: $requirements-interview when stakeholder answers or materials arrive, $tdd before changing behaviour, $debugging on any failure, $handoff when the conversation is getting long, $ui-design before building or restyling a screen (no screen code before the user answers its style, color, and font questions).
 - If the user asks for a phase without naming its skill, read that skill's SKILL.md first.
 - The last line of every reply to the user, after the skipped/risk lines: `[사용한 스킬: <skills whose SKILL.md you followed this turn, or 없음> | 다음: <next step or skill>]`
 
