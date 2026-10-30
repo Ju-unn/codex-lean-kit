@@ -31,7 +31,13 @@ Run `date` at every phase boundary and compare it with the start time in docs/wo
 | 155-170 | wrap | $verify-and-wrap, then $handoff | REPORT.md and HANDOFF.md match code and commits |
 | 170-180 | submit | - | user submits |
 
-If the user asks for a phase without naming its skill, read that skill's SKILL.md first. From minute 155: fixes and docs only.
+From minute 155: fixes and docs only.
+
+## Skill use (main agent)
+- Phase skills ($requirements-interview, $lean-plan, $delegate-build, $quality-gate, $verify-and-wrap): when a phase meets its done-when or its time is up, name the next skill and wait for the user's go. Phase changes are the user's decision.
+- Use these without being asked: $requirements-interview when stakeholder answers or materials arrive, $tdd before changing behaviour, $debugging on any failure, $handoff when the conversation is getting long.
+- If the user asks for a phase without naming its skill, read that skill's SKILL.md first.
+- The last line of every reply to the user, after the skipped/risk lines: `[사용한 스킬: <skills whose SKILL.md you followed this turn, or 없음> | 다음: <next step or skill>]`
 
 ## Setup (main agent, minute 0)
 1. Inspect: `ls -la`, `git status`, README.md, existing stack or starter code. Follow what exists.

@@ -11,7 +11,9 @@ git clone --depth 1 https://github.com/Ju-unn/codex-lean-kit /tmp/kit
 sh /tmp/kit/install.sh
 codex -m gpt-6.1-sol -c model_reasoning_effort="medium" --disable computer_use --disable browser_use
 ```
-1. 키트는 **작업 공간 밖**(`/tmp/kit`)에 clone합니다. 작업 공간 안에 clone했다면 설치한 뒤 그 폴더를 지웁니다.
+1. 키트는 **작업 공간 밖**(`/tmp/kit`)에 clone합니다. 밖에 둔 clone은 지우지 않습니다. 끝까지 `cat /tmp/kit/GUIDE.md`로 이 설명서를 볼 수 있습니다.
+   - Codex에 시킬 때는 위치를 정해 줍니다: `키트를 /tmp/kit에 clone하고 여기서 install.sh를 실행해줘.`
+   - 작업 공간 **안**에 clone됐다면 설치한 뒤 그 폴더만 지웁니다. 기준선 커밋에 키트 저장소가 섞이지 않게 하기 위해서입니다.
 2. 설치되는 것: `AGENTS.md`, `.agents/skills/`(스킬 8개), `.codex/agents/`(역할 3개). 과제 README.md와 기존 파일은 건드리지 않습니다.
 3. codex는 **설치한 다음에** 켭니다. 키트는 codex가 켜질 때 읽힙니다. 이미 켜져 있었다면 끄고 다시 켭니다.
 4. 신뢰를 물으면 **trust**를 고릅니다. 역할 3개는 trust한 폴더에서만 로드됩니다.
@@ -27,13 +29,19 @@ codex -m gpt-6.1-sol -c model_reasoning_effort="medium" --disable computer_use -
 - 플랫폼 도우미가 있으면 공개 스킬 적용 방법을 묻습니다. 안내가 다르면 그 안내를 따릅니다.
 
 ## 2. 스킬은 자동으로 쓰이나?
-| 방법 | 동작 | 확실성 |
-|---|---|---|
-| `$스킬이름`을 입력하거나 문장에 스킬 이름을 씀 | Codex가 그 스킬을 반드시 읽고 따릅니다 | 확실함 |
-| 그냥 요청함 ("계획 세워줘") | Codex가 스킬 설명을 보고 맞으면 스스로 씁니다. AGENTS.md에도 "단계를 요청받으면 그 스킬을 먼저 읽어라"가 있습니다 | 모델이 판단하므로 빠질 수 있음 |
-| 다른 스킬이 부름 | `$lean-plan`과 `$verify-and-wrap` 끝의 `$handoff`, `$delegate-build` 안의 `$tdd`와 `$debugging`. worker는 항상 `$tdd`를 읽습니다 | 확실함 |
+**상황 스킬은 자동으로 쓰고, 단계 스킬은 Codex가 제안하면 내가 정합니다.** AGENTS.md의 "Skill use" 규칙입니다.
 
-**단계를 바꿀 때는 `$스킬`을 직접 입력하세요.** 빠질 일이 없고, 단계를 넘긴 것이 내 결정이라는 기록이 대화에 남습니다. TDD, 디버깅, 인계는 대부분 알아서 따라옵니다.
+| 종류 | 스킬 | 동작 |
+|---|---|---|
+| 상황 스킬 | `$tdd`, `$debugging`, `$handoff`, 담당자 답변을 받았을 때의 `$requirements-interview` | 이름을 부르지 않아도 Codex가 씁니다 |
+| 단계 스킬 | `$requirements-interview`, `$lean-plan`, `$delegate-build`, `$quality-gate`, `$verify-and-wrap` | 단계가 끝나거나 시간이 되면 Codex가 다음 스킬을 제안하고 기다립니다. 내가 `진행해` 또는 `$스킬`로 답합니다 |
+
+- 모든 답변의 마지막 줄에 `[사용한 스킬: … | 다음: …]`이 붙습니다. 무엇을 썼고 다음에 무엇을 할지 보입니다.
+- 실측 (Codex 0.165, 10/30)
+  - `Setup부터 해줘` → 커밋이 실패하자 이름을 부르지 않았는데 `$debugging`을 읽었습니다. 끝 줄은 `[사용한 스킬: debugging | 다음: 기준 커밋 확인 후 requirements-interview 진행 결정]`이었고, 요구사항 단계로 혼자 넘어가지 않았습니다.
+  - `담당자 답변: …`만 붙여 넣음 → `$requirements-interview`를 스스로 읽고 다음 질문을 [담당자]·[자료]·[결정]으로 정리했습니다. 끝 줄은 `[사용한 스킬: requirements-interview | 다음: 답변 반영 및 요구사항 합의]`였습니다.
+- 이 표시는 AI가 스스로 적는 것입니다. 이상하면 `정말 그 SKILL.md를 읽었어?`라고 확인합니다.
+- `$스킬`을 직접 입력하는 것이 가장 확실합니다. 단계를 바꿀 때 직접 입력하면 그 결정이 내 것이라는 기록도 남습니다.
 
 ## 3. 작업 순서
 ```
