@@ -10,20 +10,22 @@ Another session or another person must be able to continue from files alone, wit
 ## Planned points
 - After plan approval:
   1. Write the handoff.
-  2. The user runs `/new` and starts the build with "docs/HANDOFF.md를 읽고 이어서 진행해."
+  2. The user runs `/new` and starts the build with "docs/HANDOFF.md를 읽고 이어서 진행해." AGENTS.md also makes a new session read the handoff first.
   3. The build then runs on a clean context.
 - At wrap: write the final handoff for the person who maintains this next.
 - Any other time: before `/compact`, or when the conversation is getting long.
 
 ## Write docs/HANDOFF.md
-Replace the file each time. Korean, 25 lines at most.
+Replace the file each time. Korean, 30 lines at most.
 
 For the next session:
-- Phase, the time from `date`, minutes left
+- Read first: the files the next step needs, in order. Usually docs/requirements.md (Agreement, R-n), docs/plan.md (next T-n, Global constraints), and docs/materials/ for exact values.
+- Phase, the time from `date`, minutes left; the start time is in docs/worklog.md
 - Done: the latest commits (short hash + subject)
 - In progress: T-n, who is on it, its state
 - Next 3 steps, and the skill to use next
 - Open questions for the stakeholder or the user
+- Server: the start command, and whether it is running now
 
 For the next person:
 - How to run and test: the exact commands
@@ -33,8 +35,9 @@ For the next person:
 
 Point to requirements.md, plan.md, and commits instead of copying them.
 
-## Drift check
-Before writing, re-read the Agreement block in docs/requirements.md. If the work has drifted from it, tell the user in one line and record the decision.
+## Before writing
+- If a subagent is still running, wait for it and verify its result. Never hand off in the middle of a task.
+- Drift check: re-read the Agreement block in docs/requirements.md. If the work has drifted from it, tell the user in one line and record the decision.
 
 ## Then
 Commit "docs: handoff". Tell the user the next command: `/new` or `/compact`.

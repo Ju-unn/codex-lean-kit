@@ -20,8 +20,8 @@
 |---|---|---|---|
 
 ## Q&A log
-| Q | Question (asked by the user) | Answer summary | Changed |
-|---|---|---|---|
+| Q | Question (asked by the user) | Answer summary | Changed | Original |
+|---|---|---|---|---|
 
 ## Open questions
 -

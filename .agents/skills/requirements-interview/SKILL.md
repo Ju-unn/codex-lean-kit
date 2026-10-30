@@ -61,10 +61,11 @@ Two rules for [담당자] questions:
 For question stems by technique, read references/question-techniques.md.
 
 ## When the user pastes answers or materials
-1. Update R-n, with the Q-number as the source. Turn concrete examples into acceptance-test candidates.
-2. Save pasted materials under docs/materials/ with their source (the Q-number), and use them as test data and examples.
-3. Record assumptions as A-n, close the answered branches, and recompute the frontier.
-4. Report only what changed, then give the next round.
+1. Save the paste first, answers and materials alike, in docs/materials/ named by its Q-numbers (for example Q3-Q5.md). Put the source on top and keep the text exactly as pasted. Later sessions read exact values here.
+2. Add a row per answered Q to the Q&A log in docs/requirements.md: answer summary, what changed, and the file.
+3. Update R-n, with the Q-number as the source. Turn concrete examples into acceptance-test candidates, and use materials as test data.
+4. Record assumptions as A-n, close the answered branches, and recompute the frontier.
+5. Report only what changed, then give the next round.
 
 ## Done when
 - The frontier is empty: every branch visited, nothing silently assumed.

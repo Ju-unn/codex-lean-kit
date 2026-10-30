@@ -39,6 +39,12 @@ From minute 155: fixes and docs only.
 - If the user asks for a phase without naming its skill, read that skill's SKILL.md first.
 - The last line of every reply to the user, after the skipped/risk lines: `[사용한 스킬: <skills whose SKILL.md you followed this turn, or 없음> | 다음: <next step or skill>]`
 
+## Resuming (main agent)
+In a new session, if docs/HANDOFF.md exists, read it before anything else, then the files it lists under Read first.
+- Check `git log --oneline -5` and `git status` against it. If they disagree, trust git and tell the user.
+- Make sure the server is up if the app has one.
+- Report in 3 lines: where we are, the next step, the skill. Then wait for the user's go.
+
 ## Setup (main agent, minute 0)
 1. Inspect: `ls -la`, `git status`, README.md, existing stack or starter code. Follow what exists.
 2. `git init` if needed. Add .gitignore: node_modules, dist, .env, *.db. If git identity is missing, ask the user, then set it repo-local.

@@ -65,6 +65,7 @@ AI 실무 평가(Krafton Cofa Probe)는 결과물만이 아니라 **일하는 �
 
 작업 공간에 생기는 문서:
 - `docs/requirements.md`
+- `docs/materials/` (담당자 답변·자료 원문)
 - `docs/plan.md` (결정 포함)
 - `docs/worklog.md` (계속 덧붙이는 기록)
 - `docs/HANDOFF.md` (인계 스냅샷)

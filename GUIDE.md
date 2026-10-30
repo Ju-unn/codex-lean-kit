@@ -49,7 +49,7 @@ README를 직접 읽기
  └ "AGENTS.md의 Setup부터 해줘."            → 기준선 커밋, baseline 브랜치
 $requirements-interview  ⇄  담당자            → 합의 확인
 $lean-plan → 내가 승인 → ($handoff) → /new    → 계획 커밋
- └ "docs/HANDOFF.md를 읽고 이어서 진행해."
+ └ "docs/HANDOFF.md를 읽고 이어서 진행해."   (새 세션은 말하지 않아도 HANDOFF부터 읽음)
 $delegate-build   (실패하면 $debugging)        → 작업마다 커밋
 $quality-gate                                 → Must 수정
 $verify-and-wrap → ($handoff)                 → REPORT
@@ -67,6 +67,17 @@ $verify-and-wrap → ($handoff)                 → REPORT
 | 170–180 | 제출 | — | 제출 완료 | 필수 파일과 저장 상태 확인 |
 
 시간이 다르면 구간을 같은 비율로 줄입니다. 90분이면 절반입니다.
+
+### `/new` 뒤에 일어나는 일
+새 세션은 이 대화를 모릅니다. 그래서 파일로 이어받습니다.
+1. AGENTS.md를 읽습니다(자동).
+2. `docs/HANDOFF.md`를 다른 일보다 먼저 읽고, 그 안의 "먼저 읽을 것"(requirements, plan, materials)을 읽습니다.
+3. `git log`와 `git status`로 인계 문서가 실제 상태와 맞는지 확인합니다.
+4. 지금 위치, 다음 단계, 쓸 스킬을 3줄로 보고하고 내 신호를 기다립니다.
+
+실측 (Codex 0.165, 10/30): 새 세션에 `이어서 할게. 어디까지 했지?`만 입력했습니다. HANDOFF → requirements → plan → materials → worklog → git log → git status 순서로 읽었고, "계획 승인 완료, 다음은 `$delegate-build`로 T1"이라고 보고한 뒤 기다렸습니다. 합의에는 있는데 계획에서 빠진 기능(취소)도 찾아냈습니다.
+
+`/new`는 HANDOFF를 쓴 직후에 입력합니다. 서브에이전트가 돌고 있을 때는 입력하지 않습니다.
 
 ## 4. 상황별로 쓰는 것
 | 이런 상황 | 입력 |
@@ -96,9 +107,10 @@ $verify-and-wrap → ($handoff)                 → REPORT
 | 파일 | 내용 | 만드는 스킬 |
 |---|---|---|
 | `docs/worklog.md` | 시각과 함께 계속 덧붙이는 작업 기록 | Setup, 이후 전체 |
-| `docs/requirements.md` | 요구사항(R-n), 가정, 합의 블록 | `$requirements-interview` |
+| `docs/requirements.md` | 요구사항(R-n), 가정, 합의 블록, 질문·답변 기록 | `$requirements-interview` |
+| `docs/materials/` | 담당자 답변과 자료 **원문**(Q 번호별 파일). 정확한 값은 여기서 확인 | `$requirements-interview` |
 | `docs/plan.md` | 범위, 구조 2안, 작업 목록(T-n), 결정 기록 | `$lean-plan` |
-| `docs/HANDOFF.md` | 다음 세션이나 다음 사람을 위한 인계 | `$handoff` |
+| `docs/HANDOFF.md` | 다음 세션이나 다음 사람을 위한 인계. 새 세션이 가장 먼저 읽음 | `$handoff` |
 | `docs/REPORT.md` | 최종 보고서: 검증 결과, 보안, 한계 | `$verify-and-wrap` |
 
 ## 7. 문제가 생기면
