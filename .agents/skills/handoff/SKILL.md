@@ -40,4 +40,7 @@ Point to requirements.md, plan.md, and commits instead of copying them.
 - Drift check: re-read the Agreement block in docs/requirements.md. If the work has drifted from it, tell the user in one line and record the decision.
 
 ## Then
-Commit "docs: handoff". Tell the user the next command: `/new` or `/compact`.
+1. Commit "docs: handoff".
+2. Tell the user in one line that docs/HANDOFF.md was written.
+3. After plan approval, end the turn with: "/new를 입력한 뒤 `이어서 할게`라고 보내 주세요." Start no build work in this session, even if the user says 진행해. Only "/new 없이 계속" overrides this.
+4. Any other point: name the next command, `/new` or `/compact`.

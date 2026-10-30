@@ -46,7 +46,10 @@ The main agent installs them once.
 - Strict TypeScript; no `any`.
 - Validate once at the route boundary with zod; trust the types after that.
 - One error shape `{ error: { code, message } }` and one error middleware. Responses never include stack traces or SQL.
-- Names use the domain nouns from docs/requirements.md. Comments say why, not what.
+- Names use the domain nouns from docs/requirements.md.
+- Comments: one Korean line above every function saying what it does; any other comment says why.
+- Formatting: one statement per line, lines under 120 characters. Never minify or squash HTML, CSS, or JS onto long lines.
+- UI checks (node --test) live in test/, never in public/ or any folder the server serves.
 - Tests:
   - Each test file creates its own in-memory DB.
   - Test behaviour at the route or service seam.

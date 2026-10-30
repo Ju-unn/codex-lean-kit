@@ -46,6 +46,7 @@ Run these now, and record the result lines in docs/worklog.md.
 Write docs/REPORT.md in Korean, from assets/report-template.md.
 - Fill every section. Every claim points to a test, file, or commit that exists.
 - Consistency check: each statement matches the code and the git log. Remove stale text and TODOs.
+- docs/requirements.md: every R-n has a final MVP value (yes, no, or later); no 후보, 대기, 미확정, or 승인 대기 remains; the Agreement header says whether the stakeholder confirmed it.
 - The task README's required files and format come first.
 
 ## 3. Submission check

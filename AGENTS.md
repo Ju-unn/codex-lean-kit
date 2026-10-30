@@ -88,6 +88,7 @@ Never cut: validation at trust boundaries, error handling that prevents data los
 - Behaviour changes follow $tdd: one failing test, minimal code, repeat. $tdd is stricter than ponytail's one-small-test floor; follow $tdd.
 - Failures follow $debugging: root cause before any fix.
 - Before saying anything is done, fixed, or passing, run the command that proves it in this turn and show the result.
+- Above every function, one Korean line saying what it does, such as `// 요청을 저장하고 대상을 잠근다`. This adds to ponytail's comment rule, which still applies to every other comment.
 - Record a decision when it is made, in docs/plan.md Decisions. New requirements go to docs/requirements.md first.
 - Commits:
   - One commit per task; the message says why.

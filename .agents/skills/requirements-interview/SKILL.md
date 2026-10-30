@@ -56,15 +56,19 @@ How the [담당자] questions unfold, from shallow to deep:
 - L0 map (the first message): which areas can the stakeholder answer, and which materials exist?
 - L1 story (open): a recent concrete case; how it is handled today; why it goes wrong.
 - L2 goal (open): the success metric, its current value, and where it is measured; who hurts most; the one thing that must work.
-- L3 scope: data, scale, constraints, what to deliberately leave out.
+- L3 scope: data, scale, constraints, what to deliberately leave out. Always ask these two:
+  - who may see and change what (people, roles, groups)
+  - what history must be kept (who changed what, and when), and whether anything may be deleted
 - L4 rules and failure paths (closed, with your default):
   - edge cases, what can go wrong, concrete examples with real values
   - phrase each so that "yes" accepts your recommended answer
-- L5 agreement: read the Agreement block back and ask for confirmation.
+- L5 agreement: one plain message for the user to send: the problem, the success metric, what we build, what we will not build, and the constraints, ending with "틀린 곳만 고쳐 주세요."
 
-Two rules for [담당자] questions:
-- In L0-L2, use no solution words (app, AI, automation). Ask about their work.
+Rules for [담당자] and [자료] questions:
+- The question line is plain words the stakeholder can answer as sent, at every level: no labels, no recommendation, no system or feature words (app, screen, button, feature, block, automation, AI). Ask about their work.
 - Never ask the stakeholder what to build, or for a task list.
+
+[결정] questions are for choices that change what gets built. An edge policy that neither the README nor the stakeholder raised gets your recommended default as an A-n instead, listed in one line so the user can overrule it.
 
 For question stems by technique, read references/question-techniques.md.
 

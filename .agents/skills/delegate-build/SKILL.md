@@ -69,9 +69,10 @@ Take tasks in plan order, one at a time unless Parallel workers below allows two
   2. If MVP-critical, add a new T-n; otherwise put it under Later.
   3. Tell the user the time cost.
 - Every MVP task passes: tell the user, and offer $quality-gate (recommended: a reviewed state exists before more features) or Later items one at a time through the same loop.
+- More work after the wrap, such as detail work the user asks for: add it as T-n in docs/plan.md, never a second plan file. When it is done, re-run $verify-and-wrap steps 1-2 and $handoff so REPORT and HANDOFF match.
 
 ## Parallel workers
-At most 2 workers at once, when the two tasks share no files and each uses only interfaces already fixed in docs/plan.md. Example: a client written against a fixed API contract, beside the task that implements the API.
+At most 2 workers at once, when the two tasks share no files and each uses only interfaces already fixed in docs/plan.md. Example: the separate screen task, when the user picked it at the plan gate, beside the task that implements the API.
 - Brief each with its exact files, and name the other task's files as "do not touch".
 - Verify and commit each one separately by path, as it finishes.
 

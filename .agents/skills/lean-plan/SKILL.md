@@ -17,6 +17,11 @@ Everything else is theirs to decide. DRY. YAGNI. TDD. A commit per task.
 
 ## Output: docs/plan.md, from assets/plan-template.md
 
+### 0. Before planning
+Start only when the Agreement block in docs/requirements.md says "confirmed by stakeholder: yes".
+- If not, give the user the $requirements-interview L5 read-back message to send, and wait for the reply.
+- Plan without it only when the user says so. Then add A-n "Agreement not confirmed by the stakeholder".
+
 ### 1. Scope
 - MVP: the R-n the success metric depends on, chosen by the stakeholder's priorities. Build these first.
 - Later: everything else, with a one-line reason each. Later items come after the MVP passes.
@@ -46,7 +51,7 @@ Each task is the smallest unit that carries its own test cycle and is worth a re
 - It is a narrow but complete path through every layer it needs (route → service → repository → test), demoable on its own.
 - It is sized for one fresh context. Setup and config fold into the task that needs them.
 - It lists the tasks that block it.
-- A task that only uses an interface (an API contract, a function signature, a file or table format) is blocked by the task that fixes that interface, not by the tasks that implement it. Then it can run beside them. Example: a UI against the API contract.
+- A slice includes its screen part. Splitting the screens into a separate task is an option the user picks at the gate, to run it beside the logic tasks; that task is then blocked only by the task that fixes the API contract.
 
 Per task:
 - Files: create / modify / test, with exact paths.
@@ -73,11 +78,12 @@ A step lets the implementer write exactly one reasonable thing.
 
 ## Gate
 1. Show the user, in at most 15 lines: the scope cut, the two options with your recommendation, and the task list in blocking order. Ask:
+   - Vertical slices with screens included (recommended), or a separate screen task run in parallel?
    - Is the granularity right?
    - Are the blocking edges right?
    - Should any task merge or split?
 2. Wait for approval.
 3. Commit "docs: plan".
-4. Run $handoff now. This is a planned handoff point; it ends by asking the user to run `/new` and continue from docs/HANDOFF.md.
+4. Run $handoff now. This is a planned handoff point: it ends the turn by asking the user to run `/new`. The build starts in the new session.
 
 Sources: obra/superpowers writing-plans (file structure, interfaces, global constraints, review focus, self-review); mattpocock/skills to-tickets (tracer-bullet slices, blocking edges, granularity check); mattpocock ADR format.
