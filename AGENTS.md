@@ -35,7 +35,7 @@ From the gate on: fixes and docs only.
 
 ## Skill use (main agent)
 - Phase skills ($requirements-interview, $lean-plan, $delegate-build, $quality-gate, $verify-and-wrap): when a phase meets its done-when, name the next skill and wait for the user's go. Phase changes are the user's decision.
-- Use these without being asked: $requirements-interview when stakeholder answers or materials arrive, $tdd before changing behaviour, $debugging on any failure, $handoff when the conversation is getting long.
+- Use these without being asked: $requirements-interview when stakeholder answers or materials arrive, $tdd before changing behaviour, $debugging on any failure, $handoff when the conversation is getting long, $ui-design before building or restyling a screen.
 - If the user asks for a phase without naming its skill, read that skill's SKILL.md first.
 - The last line of every reply to the user, after the skipped/risk lines: `[사용한 스킬: <skills whose SKILL.md you followed this turn, or 없음> | 다음: <next step or skill>]`
 
@@ -47,7 +47,7 @@ In a new session, if docs/HANDOFF.md exists, read it before anything else, then 
 
 ## Setup (main agent, first)
 1. Inspect: `ls -la`, `git status`, README.md, existing stack or starter code. Follow what exists.
-2. `git init` if needed. Add .gitignore: node_modules, dist, .env, *.db. If git identity is missing, ask the user, then set it repo-local.
+2. `git init` if needed. Add .gitignore: node_modules, dist, .env, *.db, __pycache__/. If git identity is missing, ask the user, then set it repo-local.
 3. Commit "chore: baseline + process-only kit (github.com/Ju-unn/codex-lean-kit)", then `git branch baseline`.
 4. Create docs/worklog.md, an append-only log that starts with the time from `date`.
 

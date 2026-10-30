@@ -8,6 +8,7 @@ Context: <one or two lines: where this fits, what earlier tasks produced>
 Read first: docs/plan.md (T-n section, Global Constraints, Interfaces it consumes),
             docs/requirements.md (R-n and its acceptance examples),
             <only the source files needed>
+            UI tasks: docs/design-system/<slug>/MASTER.md and .agents/skills/ui-design/SKILL.md
 Create / modify: <exact paths>
 Tests: <test file> — <named cases with the exact expected values>
 Contract: <signatures, or endpoint + request/response + error codes, or table>

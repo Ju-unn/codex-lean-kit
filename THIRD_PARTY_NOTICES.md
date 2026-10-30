@@ -11,6 +11,7 @@ Several skills in this kit are close adaptations of skills from the projects bel
 | https://github.com/cloudflare/security-audit-skill | Copyright (c) 2025-2026 Cloudflare, Inc. | `quality-gate/references/security.md` (finding validation rules, attack classes) |
 | https://github.com/softaworks/agent-toolkit | Copyright (c) 2026 Leonardo Flores | `lean-plan/references/data-model.md` (normalization and index checklist) |
 | https://github.com/juxt/allium | Copyright (c) 2026 JUXT Ltd | `requirements-interview/references/question-techniques.md` (elicitation techniques) |
+| https://github.com/nextlevelbuilder/ui-ux-pro-max-skill | Copyright (c) 2024 Next Level Builder | `ui-design` (SKILL.md adapted from ui-ux-pro-max: priority table, query contract, design-system workflow, master and page overrides, 0-results rule, tips; `scripts/`, `data/`, `references/` copied unchanged except line endings) |
 
 ## MIT License
 

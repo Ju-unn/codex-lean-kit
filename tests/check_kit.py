@@ -66,7 +66,7 @@ for role in roles:
 
 # 3. Skills: frontmatter, links, Codex's own validator when available.
 skills = sorted(p.parent for p in (ROOT / ".agents/skills").glob("*/SKILL.md"))
-check(len(skills) == 8, f"8 skills ({[s.name for s in skills]})")
+check(len(skills) == 9, f"9 skills ({[s.name for s in skills]})")
 for skill in skills:
     fm = frontmatter(skill / "SKILL.md")
     desc = fm.get("description", "")
@@ -86,7 +86,8 @@ for skill in skills:
 # 4. Size budgets and line endings.
 # AGENTS.md loads every turn, so it stays small; skills and references load only when used.
 budgets = [(ROOT / "AGENTS.md", 120)] + [(s / "SKILL.md", 200) for s in skills]
-budgets += [(p, 250) for p in (ROOT / ".agents/skills").glob("*/references/*.md")]
+# ui-design/references/quick-reference.md is the upstream file unchanged (256 lines).
+budgets += [(p, 260) for p in (ROOT / ".agents/skills").glob("*/references/*.md")]
 for path, limit in budgets:
     check(lines(path) <= limit, f"size {path.relative_to(ROOT)}: {lines(path)} <= {limit} lines")
 crlf = [str(p.relative_to(ROOT)) for p in text_files(ROOT) if b"\r\n" in p.read_bytes()]

@@ -7,7 +7,7 @@ OpenAI Codex용 작업 키트입니다. 앱 코드는 없고 **일하는 방식*
 - 증거 없이 완료라고 말하지 않는다
 - 과설계하지 않는다
 
-> 설치하면 작업 공간에 `AGENTS.md`, `.agents/skills/`(스킬 8개), `.codex/agents/`(역할 3개)가 생깁니다. 기존 파일은 덮어쓰지 않습니다.
+> 설치하면 작업 공간에 `AGENTS.md`, `.agents/skills/`(스킬 9개), `.codex/agents/`(역할 3개)가 생깁니다. 기존 파일은 덮어쓰지 않습니다.
 >
 > **처음 쓴다면 [GUIDE.md](GUIDE.md)부터 보세요.** 설치, 작업 순서, 상황별로 쓰는 스킬이 있습니다.
 
@@ -38,8 +38,9 @@ AI 실무 평가(Krafton Cofa Probe)는 결과물만이 아니라 **일하는 �
 | `$delegate-build` | 계획의 작업을 구현할 때 | worker가 구현 → 상태별 처리 → 메인이 직접 검증하고 커밋 → 위험 작업은 **작업별 리뷰** → 같은 worker가 수정 → 3줄 설명 | superpowers `subagent-driven-development`(충실 이식) |
 | `$debugging` | 테스트 실패, 버그, 예상과 다른 동작 | **근본 원인 4단계**: 조사 → 패턴 → 가설 → 수정. 3번 실패하면 구조를 재검토 | superpowers `systematic-debugging`(충실 이식) |
 | `$quality-gate` | MVP가 처음부터 끝까지 동작할 때 | **두 리뷰어 병렬**: 명세 축과 품질 축(보안·DB·과설계·Fowler 냄새). 구체적 사례가 있는 결함만 보고 | mattpocock `code-review` + ponytail-review + cloudflare·ECC 체크리스트 |
-| `$verify-and-wrap` | 25분 남았을 때, 완료라고 말하기 전 | 확인 절차(명령 → 실행 → 결과 읽기 → 판단), PASS/FAIL/NOT_RUN, REPORT, 일치 검사, 약점 브리프 | superpowers `verification-before-completion`(충실 이식) + ECC `verification-loop` |
+| `$verify-and-wrap` | 기능이 다 됐을 때, 완료라고 말하기 전 | 확인 절차(명령 → 실행 → 결과 읽기 → 판단), PASS/FAIL/NOT_RUN, REPORT, 일치 검사, 약점 브리프 | superpowers `verification-before-completion`(충실 이식) + ECC `verification-loop` |
 | `$handoff` | 계획 승인 직후, 마무리 때, `/compact`·`/new` 전 | `docs/HANDOFF.md`: 다음 세션용(상태, 다음 단계, 다음 스킬)과 다음 사람용(실행 방법, 코드 지도, 위험) | mattpocock `handoff` + Cofathon 후기 |
+| `$ui-design` | 화면을 만들거나 고치기 전 (자동) | 과제 분야를 넣으면 맞는 스타일·색·폰트를 로컬 데이터에서 골라 `docs/design-system/<slug>/MASTER.md`로 저장 → CSS `:root` 변수로 적용 → 접근성 우선순위와 제출 전 체크리스트. 새 UI 의존성 금지, 폰트는 시스템 대체 포함 | nextlevelbuilder `ui-ux-pro-max-skill`(스크립트·데이터·참고 문서는 원본 그대로, 절차는 충실 이식) |
 
 ### 이식 원칙
 - **핵심 절차는 원본을 충실히 옮겼습니다.** 원본의 철칙, 단계, 표, 경고 신호, 변명과 반박 표, 출력 형식이 그대로 들어 있습니다.

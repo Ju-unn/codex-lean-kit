@@ -28,6 +28,7 @@ public/ or web/      UI, chosen below
   - shows empty, loading, and error states
   - labels things in the user's language
   - makes the one primary action obvious
+  - follows docs/design-system/<slug>/MASTER.md from $ui-design
   - Graders take screenshots.
 
 ## Packages

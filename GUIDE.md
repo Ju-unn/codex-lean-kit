@@ -14,7 +14,7 @@ codex -m gpt-6.1-sol -c model_reasoning_effort="medium" --disable computer_use -
 1. 키트는 **작업 공간 밖**(`/tmp/kit`)에 clone합니다. 밖에 둔 clone은 지우지 않습니다. 끝까지 `cat /tmp/kit/GUIDE.md`로 이 설명서를 볼 수 있습니다.
    - Codex에 시킬 때는 위치를 정해 줍니다: `키트를 /tmp/kit에 clone하고 여기서 install.sh를 실행해줘.`
    - 작업 공간 **안**에 clone됐다면 설치한 뒤 그 폴더만 지웁니다. 기준선 커밋에 키트 저장소가 섞이지 않게 하기 위해서입니다.
-2. 설치되는 것: `AGENTS.md`, `.agents/skills/`(스킬 8개), `.codex/agents/`(역할 3개). 과제 README.md와 기존 파일은 건드리지 않습니다.
+2. 설치되는 것: `AGENTS.md`, `.agents/skills/`(스킬 9개), `.codex/agents/`(역할 3개). 과제 README.md와 기존 파일은 건드리지 않습니다.
 3. codex는 **설치한 다음에** 켭니다. 키트는 codex가 켜질 때 읽힙니다. 이미 켜져 있었다면 끄고 다시 켭니다.
 4. 신뢰를 물으면 **trust**를 고릅니다. 역할 3개는 trust한 폴더에서만 로드됩니다.
 5. 다른 터미널에서 역할을 확인합니다(토큰을 쓰지 않음).
@@ -24,7 +24,7 @@ codex -m gpt-6.1-sol -c model_reasoning_effort="medium" --disable computer_use -
 
 처음 쓰는 환경이라면 더 확인합니다.
 - 버전: `node --version && git --version && python3 --version && codex --version`
-- `$`를 입력하면 스킬 8개가 팝업으로 뜹니다.
+- `$`를 입력하면 스킬 9개가 팝업으로 뜹니다.
 - 미리보기: `node -e "require('http').createServer((q,s)=>s.end('ok')).listen(3000,'0.0.0.0')"`를 실행하고 포트 3000으로 확인합니다(Ctrl+C로 종료).
 - 플랫폼 도우미가 있으면 공개 스킬 적용 방법을 묻습니다. 안내가 다르면 그 안내를 따릅니다.
 
@@ -33,7 +33,7 @@ codex -m gpt-6.1-sol -c model_reasoning_effort="medium" --disable computer_use -
 
 | 종류 | 스킬 | 동작 |
 |---|---|---|
-| 상황 스킬 | `$tdd`, `$debugging`, `$handoff`, 담당자 답변을 받았을 때의 `$requirements-interview` | 이름을 부르지 않아도 Codex가 씁니다 |
+| 상황 스킬 | `$tdd`, `$debugging`, `$handoff`, `$ui-design`(화면 작업 전), 담당자 답변을 받았을 때의 `$requirements-interview` | 이름을 부르지 않아도 Codex가 씁니다 |
 | 단계 스킬 | `$requirements-interview`, `$lean-plan`, `$delegate-build`, `$quality-gate`, `$verify-and-wrap` | 단계가 끝나거나 시간이 되면 Codex가 다음 스킬을 제안하고 기다립니다. 내가 `진행해` 또는 `$스킬`로 답합니다 |
 
 - 모든 답변의 마지막 줄에 `[사용한 스킬: … | 다음: …]`이 붙습니다. 무엇을 썼고 다음에 무엇을 할지 보입니다.
@@ -91,6 +91,7 @@ $verify-and-wrap → ($handoff)                 → REPORT
 | 구현 중에 새 요구사항이 나왔다 | `담당자 새 정보: <붙여넣기>. requirements.md에 반영하고 계획에 주는 영향만 알려줘.` |
 | 테스트가 실패하거나 버그가 났다 | `$debugging 원인부터 찾아줘. 고치기 전에 원인과 변경 범위를 알려줘.` |
 | 작은 수정을 바로 하고 싶다 | `$tdd <무엇을> 고쳐줘.` |
+| 화면을 처음 만들거나 디자인을 바꾼다 | 자동으로 `$ui-design`. 계획 단계에서 과제 분야에 맞는 디자인 시스템을 `docs/design-system/`에 저장하고, 화면은 그 색·폰트 변수를 씀. 직접 시키려면 `$ui-design <무엇을>` |
 | 화면이 안 보인다 | `서버 실행해줘.` (0.0.0.0에서 과제가 정한 포트, 없으면 3000으로 계속 돌고, `/ps`로 보임) |
 | "Selected model is at capacity" | 잠시 뒤 다시 보내기. 계속되면 `/model`에서 `gpt-6-sol`(medium) |
 | 대화가 길어졌다 (`/status`의 남은 컨텍스트가 40% 아래) | `$handoff` 다음 `/new`, 그리고 `docs/HANDOFF.md를 읽고 이어서 진행해.` |
@@ -117,6 +118,7 @@ $verify-and-wrap → ($handoff)                 → REPORT
 | `docs/materials/` | 담당자 답변과 자료 **원문**(Q 번호별 파일). 정확한 값은 여기서 확인 | `$requirements-interview` |
 | `docs/plan.md` | 범위, 구조 2안, 작업 목록(T-n), 결정 기록 | `$lean-plan` |
 | `docs/HANDOFF.md` | 다음 세션이나 다음 사람을 위한 인계. 새 세션이 가장 먼저 읽음 | `$handoff` |
+| `docs/design-system/<slug>/MASTER.md` | 화면의 색·폰트·간격·컴포넌트 규칙과 제출 전 체크리스트 | `$ui-design` |
 | `docs/REPORT.md` | 최종 보고서: 검증 결과, 보안, 한계 | `$verify-and-wrap` |
 
 ## 7. 문제가 생기면
