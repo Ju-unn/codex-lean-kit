@@ -25,7 +25,7 @@ If you haven't run the verification command in this turn, you cannot claim it pa
 |---|---|---|
 | Tests pass | test output: 0 failures | an earlier run, "should pass" |
 | Type check clean | tsc output: 0 errors | tests passing |
-| Server works | running on 0.0.0.0:3000, curl returns the expected body | "it compiled" |
+| Server works | running on 0.0.0.0 at the app's port, curl returns the expected body | "it compiled" |
 | Bug fixed | the original symptom re-tested and gone | code changed |
 | Worker finished | git diff shows the change | the worker said so |
 | Requirements met | line-by-line R-n checklist | tests passing |
@@ -38,7 +38,7 @@ Red flags:
 
 ## 1. Evidence
 Run these now, and record the result lines in docs/worklog.md.
-- Type check, full test suite, smoke: make sure the server is up on 0.0.0.0:3000 as AGENTS.md says, curl the main endpoints, and leave it running for the user's preview.
+- Type check, full test suite, smoke: make sure the server is up as AGENTS.md says, curl the main endpoints, and leave it running for the user's preview.
 - Mark each check PASS, FAIL, or NOT_RUN, with its command. A check that never ran is NOT_RUN, never PASS.
 - Requirements: re-read docs/requirements.md. Map every MVP R-n to done, partial, or not done, with its evidence (test, file, or commit).
 
@@ -53,7 +53,7 @@ Write docs/REPORT.md in Korean, from assets/report-template.md.
 2. Run $handoff for the final handoff to the next person.
 3. Check that the required files from the task README exist and are saved, and that `git status` is clean.
 4. Remind the user:
-   - The server stays running on port 3000; they check the main screen in the preview themselves.
+   - The server stays running; they check the main screen in the preview themselves.
 
 ## 4. Weak-spot brief
 The user reads this; it is not for memorizing.

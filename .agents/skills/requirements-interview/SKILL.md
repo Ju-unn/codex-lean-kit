@@ -18,7 +18,7 @@ Interview relentlessly until there is a shared understanding. Map everything tha
 
 Label every question with who answers it:
 - **[담당자]** business information: how the work runs today, cases, rules, exceptions, priorities, the success metric. The user asks the stakeholder.
-- **[자료]** a material request: what, why, and in what form (for example, a sample schedule as a table). The user requests it from the stakeholder.
+- **[자료]** a material request: what, why, and in what form (for example, a few sample records as a table). The user requests it from the stakeholder.
 - **[결정]** the user decides: scope cuts, technical choices, trade-offs, and an assumption where the stakeholder has no answer.
 
 There is no cap on the number of questions.

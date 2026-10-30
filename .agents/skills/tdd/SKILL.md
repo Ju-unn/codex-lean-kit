@@ -15,13 +15,13 @@ Violating the letter of these rules is violating their spirit.
   - configuration
   - scaffolding
   - generated code
-  - visual-only UI (layout, styling); the user checks visuals in the Browser preview
+  - visual-only UI (layout, styling); the user checks visuals in the browser
 
 ## Where tests go: seams
 - A seam is a public boundary where behaviour is observable from outside: HTTP routes (supertest against createApp) and service functions.
 - Tests live at seams, never against private helpers or internals.
 - The seams under test are the tests listed in docs/plan.md, agreed at plan approval. A test at an unlisted seam needs a reason in your report.
-- A good test reads like a specification ("rejects a swap between different roles") and survives refactors because it does not care about internal structure.
+- A good test reads like a specification ("rejects a booking that overlaps an existing one") and survives refactors because it does not care about internal structure.
 
 ## The iron law
 ```

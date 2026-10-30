@@ -71,8 +71,8 @@ Take tasks in plan order, one at a time unless Parallel workers below allows two
 - Every MVP task passes: tell the user, and offer $quality-gate (recommended: a reviewed state exists before more features) or Later items one at a time through the same loop.
 
 ## Parallel workers
-At most 2 workers at once, when the two tasks share no files and each uses only interfaces already fixed in docs/plan.md. The usual pair: the UI task against the API contract, beside a logic task.
-- Brief each with its exact files and "do not touch" the other's directory.
+At most 2 workers at once, when the two tasks share no files and each uses only interfaces already fixed in docs/plan.md. Example: a client written against a fixed API contract, beside the task that implements the API.
+- Brief each with its exact files, and name the other task's files as "do not touch".
 - Verify and commit each one separately by path, as it finishes.
 
 ## Fallback

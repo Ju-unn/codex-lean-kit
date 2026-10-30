@@ -5,7 +5,7 @@ This kit holds process only, no application code. The task README and any files 
 
 ## Roles
 - The user is the decision-maker. Put every decision to the user: scope, technical choices, trade-offs.
-- A stakeholder agent holds the business facts, rules, and materials. You cannot reach it. The user relays your questions and material requests and pastes back the answers. Label each question [담당자], [자료], or [결정].
+- A stakeholder agent holds the business facts, rules, and materials. You cannot reach it. The user relays your questions and material requests and pastes back the answers. Label each question [담당자], [자료], or [결정]. If the task has no stakeholder, the user answers all three.
 - Main agent: talks with the user, writes docs/, spawns subagents, verifies their work, keeps time.
 - worker: implements one task test-first and reports its files. The main agent commits.
 - explorer, reviewer: read only. They never edit or commit.
@@ -95,13 +95,13 @@ Never cut: validation at trust boundaries, error handling that prevents data los
   - Commits stay local. If git cannot commit, keep working and log each finished task with `date` in docs/worklog.md.
 
 ## Running the server (main agent)
-The user's browser preview is already open on port 3000 and shows only what is running.
-- Keep the server up on 0.0.0.0:3000. Start it yourself as soon as anything is viewable and whenever the user asks.
+When the app has a server, the user sees only what is running. Port: the one the task README names, else 3000 (the preview's default).
+- Keep the server up on 0.0.0.0 at that port. Start it yourself as soon as anything is viewable and whenever the user asks.
 - Start the dev script (watch mode) as a long-running command; don't wait for it to exit. It keeps running as a background terminal; the user sees it in /ps.
-- Check it: `curl -s -o /dev/null -w '%{http_code}' http://localhost:3000/`. On failure, read the server output and follow $debugging.
+- Check it: `curl -s -o /dev/null -w '%{http_code}' http://localhost:<port>/`. On failure, read the server output and follow $debugging.
 - If it is gone by your next turn, start it detached instead (Linux: `setsid nohup <command> > /tmp/server.log 2>&1 < /dev/null &`; Windows: `Start-Process -WindowStyle Hidden`). This may need the user's approval.
 - Still blocked: give the user the one command to run in their own terminal.
-- To restart, stop only the old server process, never every node process.
+- To restart, stop only the old server process, never every process of that runtime.
 
 ## Subagents
 - Roles loaded: spawn with task_name, agent_type (explorer, worker, or reviewer), and fork_turns "none". Pass no model or reasoning_effort; each role pins its own.

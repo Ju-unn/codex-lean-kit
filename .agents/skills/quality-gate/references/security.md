@@ -29,7 +29,7 @@ Trace untrusted input from its entry point to a dangerous sink: SQL queries, HTM
 ## Access control
 Verify that a caller cannot act outside its authority, and that the check is the right permission for the right resource through the right mechanism.
 - Is there another path to the same state change that checks a weaker permission?
-- Can a field in the request body override what the permission system restricts, such as userId, role, storeId, or status?
+- Can a field in the request body override what the permission system restricts, such as userId, role, tenantId, or status?
 - Are there endpoints that check authentication but forget authorization (IDOR: /items/:id of another user)?
 - Does the same resource have several access paths with inconsistent checks (list vs detail vs update)?
 - Do bulk, export, and import operations enforce per-item permissions?

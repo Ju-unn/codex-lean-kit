@@ -48,7 +48,7 @@ The user rephrases these in their own words. Pick the technique that fits the op
 ## Check assumptions: show back what you heard
 - Play back: "So it goes A, then B, then either C or D. Is that right?"
 - Test order: "Could these steps happen in a different order? Would that change anything?"
-- Verify actors: "Is it always the manager who approves? Could someone else, in some cases?"
+- Verify actors: "Is it always the same person who signs this off? Could someone else, in some cases?"
 - Check completeness at each transition: "Before we move on, is there any situation here we haven't covered?"
 - Replay a real scenario: "Say Alice does X on Monday. Walk me through what happens, step by step."
 

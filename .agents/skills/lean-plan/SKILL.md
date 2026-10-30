@@ -45,7 +45,7 @@ Each task is the smallest unit that carries its own test cycle and is worth a re
 - It is a narrow but complete path through every layer it needs (route → service → repository → test), demoable on its own.
 - It is sized for one fresh context. Setup and config fold into the task that needs them.
 - It lists the tasks that block it.
-- A UI task is blocked only by the task that fixes the API contract (paths, request and response fields, error codes), not by the logic tasks. Then it can run beside them.
+- A task that only uses an interface (an API contract, a function signature, a file or table format) is blocked by the task that fixes that interface, not by the tasks that implement it. Then it can run beside them. Example: a UI against the API contract.
 
 Per task:
 - Files: create / modify / test, with exact paths.

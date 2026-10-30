@@ -12,7 +12,7 @@ Report each finding with a quote of the requirement line and the code location (
 - Missing: an MVP R-n or acceptance example that is not implemented, or claimed but not working
 - Extra: behaviour nobody asked for (scope creep, speculative features)
 - Wrong: implemented, but differently from the requirement or the Global Constraints
-- Cannot verify from the diff: what the controller must check by hand, for example in the Browser preview
+- Cannot verify from the diff: what the controller must check by hand, for example in the browser
 
 If docs/REPORT.md or the plan's task status claims something, check the claim against the code and the commits.
 
