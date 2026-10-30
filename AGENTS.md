@@ -14,7 +14,7 @@ This kit holds process only, no application code. The task README and any files 
 ## Hard rules
 - Models: only gpt-6.1-sol, gpt-6-sol, gpt-5.6-terra, gpt-6-luna. Never use or suggest another model.
 - Never git push or send task files, code, or data outside the workspace. Web search is for public library docs only; never put task text, code, or data into a query.
-- No computer use or browser automation. You run the server and check it with curl; the user looks at the page in the IDE Browser preview or the remote desktop's Chromium.
+- No computer use or browser automation. You run the server and check it with curl; the user looks at the page.
 - Do not change Codex or platform settings, sandbox, or approval policy. Never use --dangerously-* flags, danger-full-access, or --approve-for-me.
 - Never overwrite the task README.md. Kit documents live in docs/.
 
@@ -35,7 +35,7 @@ If the user asks for a phase without naming its skill, read that skill's SKILL.m
 
 ## Setup (main agent, minute 0)
 1. Inspect: `ls -la`, `git status`, README.md, existing stack or starter code. Follow what exists.
-2. `git init` if needed. Add .gitignore: node_modules, dist, .env, *.db, .server.*. If git identity is missing, ask the user, then set it repo-local.
+2. `git init` if needed. Add .gitignore: node_modules, dist, .env, *.db. If git identity is missing, ask the user, then set it repo-local.
 3. Commit "chore: baseline + process-only kit (github.com/Ju-unn/codex-lean-kit)", then `git branch baseline`.
 4. Create docs/worklog.md, an append-only log that starts with the time from `date`.
 
@@ -83,14 +83,13 @@ Never cut: validation at trust boundaries, error handling that prevents data los
   - Commits stay local. If git cannot commit, keep working and log each finished task with `date` in docs/worklog.md.
 
 ## Running the server (main agent)
-The user sees only what is running. Listen on 0.0.0.0, port 3000; the page the user opens is always on port 3000.
-- Start it yourself in the background as soon as anything is viewable, after any change that needs a restart, and whenever the user asks:
-  - Linux: `[ -f .server.pid ] && kill "$(cat .server.pid)"; nohup <start command> > .server.log 2>&1 & echo $! > .server.pid`
-  - Windows: `Start-Process -WindowStyle Hidden` with `-RedirectStandardOutput .server.log -RedirectStandardError .server.err`.
-- Check it: `curl -s -o /dev/null -w '%{http_code}' http://localhost:3000/`. On failure, read `tail -n 30 .server.log` and follow $debugging.
-- Then tell the user: "Browser preview, port 3000".
-- If the sandbox blocks the port or the process dies when the command returns, ask the user to approve. If it still fails, give them the one command to run in their own terminal.
-- Port 3000 already taken: stop only the process holding it (`ss -ltnp | grep :3000`), never every node process.
+The user's browser preview is already open on port 3000 and shows only what is running.
+- Keep the server up on 0.0.0.0:3000. Start it yourself as soon as anything is viewable and whenever the user asks.
+- Start the dev script (watch mode) as a long-running command; don't wait for it to exit. It keeps running as a background terminal; the user sees it in /ps.
+- Check it: `curl -s -o /dev/null -w '%{http_code}' http://localhost:3000/`. On failure, read the server output and follow $debugging.
+- If it is gone by your next turn, start it detached instead (Linux: `setsid nohup <command> > /tmp/server.log 2>&1 < /dev/null &`; Windows: `Start-Process -WindowStyle Hidden`). This may need the user's approval.
+- Still blocked: give the user the one command to run in their own terminal.
+- To restart, stop only the old server process, never every node process.
 
 ## Subagents
 - Roles loaded: spawn with task_name, agent_type (explorer, worker, or reviewer), and fork_turns "none". Pass no model or reasoning_effort; each role pins its own.

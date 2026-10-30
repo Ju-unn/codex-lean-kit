@@ -38,7 +38,7 @@ Red flags:
 
 ## 1. Evidence
 Run these now, and record the result lines in docs/worklog.md.
-- Type check, full test suite, smoke: restart the server on 0.0.0.0:3000 as AGENTS.md says, curl the main endpoints, and leave it running for the user's preview.
+- Type check, full test suite, smoke: make sure the server is up on 0.0.0.0:3000 as AGENTS.md says, curl the main endpoints, and leave it running for the user's preview.
 - Mark each check PASS, FAIL, or NOT_RUN, with its command. A check that never ran is NOT_RUN, never PASS.
 - Requirements: re-read docs/requirements.md. Map every MVP R-n to done, partial, or not done, with its evidence (test, file, or commit).
 
@@ -54,7 +54,7 @@ Write docs/REPORT.md in Korean, from assets/report-template.md.
 3. Check that the required files from the task README exist and are saved, and that `git status` is clean.
 4. Remind the user:
    - Start submitting 10 minutes before the end.
-   - The server is running on port 3000. They open the Browser preview and check the main screen themselves.
+   - The server stays running on port 3000; they check the main screen in the preview themselves.
 
 ## 4. Weak-spot brief
 The user reads this; it is not for memorizing.
