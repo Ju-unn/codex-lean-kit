@@ -33,7 +33,7 @@ AI 실무 평가(Krafton Cofa Probe)는 결과물만이 아니라 **일하는 �
 | 스킬 | 언제 | 하는 일 | 원본 (이식 방식) |
 |---|---|---|---|
 | `$requirements-interview` | 과제를 처음 받았을 때, 담당자 답을 받았을 때 | **열린 질문 전부를 라운드마다 질문**(개수 제한 없음). 사실은 AI가 찾고, 결정은 담당자에게, 기술 선택은 우리가. 합의 블록 확인 | mattpocock `grilling`(충실 이식) + `to-questionnaire` + juxt `elicit`(질문 기법) |
-| `$lean-plan` | 코드를 쓰기 전 | MVP 자르기, 구조 2안, 파일 구조, 인터페이스, 전역 제약, 리뷰 초점, 수직 슬라이스 작업, 자체 점검, 승인 후 handoff | superpowers `writing-plans`(충실 이식) + mattpocock `to-tickets` |
+| `$lean-plan` | 코드를 쓰기 전 | MVP 자르기, 구조 2안(기본: 기능별 모듈 + 순수 도메인, 의존 방향·패턴·SOLID·생활 체조 일부), 파일 구조, 인터페이스, 전역 제약, 리뷰 초점, 수직 슬라이스 작업, 자체 점검, 승인 후 handoff | superpowers `writing-plans`(충실 이식) + mattpocock `to-tickets` |
 | `$tdd` | 기능이나 버그 수정을 구현할 때 | **테스트 1개 → 실패 확인 → 최소 코드 → 전체 테스트 → 반복**. 테스트를 한꺼번에 먼저 쓰는 방식 금지 | superpowers `test-driven-development` + mattpocock `tdd`(충실 이식) |
 | `$delegate-build` | 계획의 작업을 구현할 때 | worker가 구현 → 상태별 처리 → 메인이 직접 검증하고 커밋 → 위험 작업은 **작업별 리뷰** → 같은 worker가 수정 → 3줄 설명 | superpowers `subagent-driven-development`(충실 이식) |
 | `$debugging` | 테스트 실패, 버그, 예상과 다른 동작 | **근본 원인 4단계**: 조사 → 패턴 → 가설 → 수정. 3번 실패하면 구조를 재검토 | superpowers `systematic-debugging`(충실 이식) |

@@ -23,6 +23,7 @@ Look for, in this order:
 6. Lean: dead code, unused options, speculative features, a dependency for a few lines, abstraction with one implementation, near-copies that must change together, one function doing unrelated jobs.
 7. Hard to extend: adding one Later item from docs/plan.md would force edits across unrelated files, or a domain rule is hard-coded in a route or the UI. Name the Later item and the files as the concrete case.
 8. Hard to read: lines over 120 characters, several statements on one line, minified HTML, CSS, or JS, a function without its one-line Korean summary, or a test file inside a served folder.
+9. Structure: an import against the dependency direction in lean-plan/references/stack-ts.md (domain importing express or SQL, a feature importing another feature's route or repo), nesting deeper than one level after guard clauses, else after return, a function over 30 lines or a file over 150. Quote the import or the lines.
 
 Smell baseline. These are judgment calls, never hard violations; name the smell and quote the hunk:
 - Mysterious Name: a name doesn't reveal what it does or holds. Rename it.

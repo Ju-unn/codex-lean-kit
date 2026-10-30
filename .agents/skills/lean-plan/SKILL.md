@@ -29,7 +29,7 @@ Start only when the Agreement block in docs/requirements.md says "confirmed by s
 ### 2. Architecture: two options, one recommendation
 Compare two options against the R-n they serve: cost, risk, what each makes hard. Recommend one.
 For each Later item, name the files the chosen option would change to add it. If they spread across unrelated files or layers, revisit the structure. Do not build the extension now.
-- Empty workspace: start from references/stack-ts.md.
+- Empty workspace: compare feature modules on a pure domain (references/stack-ts.md, the default) with layered folders by type (routes/, services/, repos/). Record the choice in Decisions.
 - Starter code exists: follow it.
 
 ### 3. File structure (before tasks)
@@ -48,7 +48,7 @@ Map every file that will be created or modified, with its one responsibility.
 
 ### 6. Tasks: vertical slices
 Each task is the smallest unit that carries its own test cycle and is worth a reviewer's gate.
-- It is a narrow but complete path through every layer it needs (route → service → repository → test), demoable on its own.
+- It is a narrow but complete path through every layer it needs (route → service → repository → test), demoable on its own. It usually lives in one feature folder and its public/<feature>.js, plus any rule it adds to domain/.
 - It is sized for one fresh context. Setup and config fold into the task that needs them.
 - It lists the tasks that block it.
 - A slice includes its screen part. Splitting the screens into a separate task is an option the user picks at the gate, to run it beside the logic tasks; that task is then blocked only by the task that fixes the API contract.

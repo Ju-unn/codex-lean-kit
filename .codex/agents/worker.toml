@@ -29,6 +29,7 @@ Self-review before reporting:
 - Completeness: everything in the task, plus the plan's edge cases?
 - Quality: do names say what, not how? One Korean summary line above every function? Lines under 120 characters, one statement each?
 - Discipline: nothing beyond the task? Existing patterns followed?
+- Structure: imports follow the dependency direction in .agents/skills/lean-plan/references/stack-ts.md? Guard clauses, one nesting level, no else after return? Functions up to 30 lines, files up to 150?
 - Security: input validated at the boundary; parameterized SQL only; no secrets in code; passwords hashed with node:crypto scrypt if credentials appear.
 - Tests: real behaviour with independent expected values; output pristine?
 
