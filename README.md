@@ -8,6 +8,8 @@ OpenAI Codex용 작업 키트입니다. 앱 코드는 없고 **일하는 방식*
 - 과설계하지 않는다
 
 > 설치하면 작업 공간에 `AGENTS.md`, `.agents/skills/`(스킬 8개), `.codex/agents/`(역할 3개)가 생깁니다. 기존 파일은 덮어쓰지 않습니다.
+>
+> **처음 쓴다면 [GUIDE.md](GUIDE.md)부터 보세요.** 설치, 작업 순서, 상황별로 쓰는 스킬이 있습니다.
 
 ---
 
@@ -86,45 +88,8 @@ AI 실무 평가(Krafton Cofa Probe)는 결과물만이 아니라 **일하는 �
 
 ---
 
-## 4. 시험 당일 사용법
-
-### 사전 체험 15분 점검
-1. 버전을 확인합니다: `node --version && git --version && python3 --version && codex --version`
-2. 아래 "설치 3줄"을 실행하고, 요약에 skills 8개와 roles 3개가 나오는지 봅니다.
-3. codex를 실행합니다.
-   - 신뢰를 물으면 **trust**를 고릅니다.
-   - `/status`에서 모델과 승인 정책을 확인합니다.
-4. 역할이 로드됐는지 확인합니다(토큰을 쓰지 않음).
-   - `codex debug prompt-input -c 'model="gpt-6.1-sol"' hi | grep -c 'Available roles'`
-   - 1이면 정상입니다. 0이면 §6을 봅니다.
-5. `$`를 입력해 스킬 팝업을 확인합니다.
-6. Browser 미리보기를 확인합니다.
-   - `node -e "require('http').createServer((q,s)=>s.end('ok')).listen(3000,'0.0.0.0')"` 실행
-   - PORT 3000으로 접속
-7. Cofa Helper에 공개 Skill 적용 방법을 묻습니다. 안내가 다르면 그 안내를 따릅니다.
-
-### 설치 3줄 (작업 공간 루트에서)
-```sh
-git clone --depth 1 https://github.com/Ju-unn/codex-lean-kit /tmp/kit
-sh /tmp/kit/install.sh
-codex -m gpt-6.1-sol -c model_reasoning_effort="medium" --disable computer_use --disable browser_use
-```
-
-### 180분 흐름
-| 분 | 단계 | 입력 예시 |
-|---|---|---|
-| 0–10 | 준비 | README를 **직접 먼저 읽고** 설치 → `작업 공간 점검하고 기준선 커밋까지 해줘.` |
-| 10–35 | 요구사항 | `$requirements-interview README 분석해서 요구사항 후보와 첫 라운드 질문 정리해줘. 코드는 아직 쓰지 마.` → 담당자에게 **내 말로** 질문 → `담당자 답변: … 반영하고 다음 라운드 줘.` |
-| 35–55 | 계획 | `$lean-plan 남은 시간 X분 기준으로 계획 세워줘.` → 승인 → (자동으로 `$handoff`) → `/new` → `docs/HANDOFF.md를 읽고 이어서 진행해.` |
-| 55–135 | 구현 | `$delegate-build T1부터 진행해.` 실패하면 `$debugging`. worker가 일하는 동안 남은 질문을 담당자에게 |
-| 135–155 | 게이트(기능 동결) | `$quality-gate 최종 리뷰해줘.` → Must만 수정 |
-| 155–170 | 마무리 | `$verify-and-wrap 검증하고 REPORT 작성해. 예상 질문으로 나를 점검해줘.` |
-| 170–180 | 제출 | 필수 파일과 저장 상태를 확인한 뒤 "제출하고 문제풀기" |
-
-- worker가 커밋할 때 승인 요청이 메인 화면에 뜰 수 있습니다. 확인하고 승인합니다.
-- **`/new` 시점**:
-  - 계획 승인 직후: AI가 알려 줍니다.
-  - 그 밖에: `/status`의 남은 컨텍스트가 40% 아래로 떨어지면 `$handoff` → `/new`.
+## 4. 사용법
+설치, 작업 순서, 상황별 스킬은 **[GUIDE.md](GUIDE.md)**에 있습니다.
 
 ### git 사용 원칙
 자료 근거: "Git Push 불가", "Git Clone과 구분", 수집 기록에 "git 로그·diff"
@@ -143,7 +108,7 @@ codex -m gpt-6.1-sol -c model_reasoning_effort="medium" --disable computer_use -
   - 명령 출력은 `tail`로 자릅니다.
   - 탐색에는 싼 모델을 씁니다.
   - 계획을 마친 뒤 `/new`로 새 세션을 엽니다.
-- 매 턴 로드되는 것은 AGENTS.md(80줄 이하)와 스킬 설명뿐입니다. 스킬 본문과 참고 문서는 쓸 때만 읽힙니다.
+- 매 턴 로드되는 것은 AGENTS.md(약 100줄)와 스킬 설명뿐입니다. 스킬 본문과 참고 문서는 쓸 때만 읽힙니다.
 - spawn 1회의 고정 비용은 약 4만 토큰(대부분 캐시)입니다(실측). 그래서 몇 줄짜리 수정은 메인이 직접 합니다.
 
 ## 6. 문제가 생기면
