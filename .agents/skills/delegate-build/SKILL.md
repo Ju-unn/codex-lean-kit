@@ -18,7 +18,7 @@ Never pass on a report you have not checked.
 2. Run the test command, so every worker starts from a working setup.
 
 ## The task loop
-Take tasks one at a time, in plan order. The next task starts only after this one is complete.
+Take tasks in plan order, one at a time unless Parallel workers below allows two. A task starts only after the tasks that block it are complete.
 
 1. **Choose who builds it.**
    - Main: 2 files or fewer and a few dozen lines, or tightly coupled to details you just wrote. Follow $tdd yourself.
@@ -32,7 +32,7 @@ Take tasks one at a time, in plan order. The next task starts only after this on
    - Integrate finished work or update docs.
    - If you are idle, call `wait_agent` in 5-10 minute stretches.
    - Suggest the user spends the wait on follow-up stakeholder questions.
-   - A worker's approval request (for example, git commit) appears in the main screen for the user to approve.
+   - A worker's approval request appears in the main screen for the user to approve.
 4. **Handle the report by status.**
    - DONE: go to step 5.
    - DONE_WITH_CONCERNS: read the concerns first. Resolve doubts about correctness before the review.
@@ -42,18 +42,19 @@ Take tasks one at a time, in plan order. The next task starts only after this on
      - Task too big: split it in docs/plan.md.
      - Plan wrong: tell the user.
      - Never re-send the same task unchanged.
-5. **Verify it yourself.**
-   - `git log --oneline <base>..HEAD` and `git diff --stat <base>..HEAD`.
+5. **Verify it yourself, then commit.** Workers never commit; you do, one task at a time.
+   - `git status --short` and `git diff -- <files from the report>`. Files outside the brief are a finding.
    - Read the diff.
    - Run the task's tests and the full suite.
    - Check the TDD evidence in the report: RED, then GREEN.
+   - Commit only that task's files: `git add <files>`, then `git commit -m "<type>: <what> (T-n, R-n) - <why>"`. If git is blocked, ask the user to approve the command.
 6. **Task review.** It applies when the task touches domain rules, data writes, input handling, auth, or money.
    - `spawn_agent` with task_name "r<n>", agent_type "reviewer", fork_turns "none".
    - Message: references/task-review-template.md, filled.
    - For any other task, your step 5 is the review.
 7. **Fix loop.**
    - Send Critical and Important findings to the same worker with `followup_task`.
-   - The worker fixes, re-runs the covering tests, commits, and reports.
+   - The worker fixes, re-runs the covering tests, and reports. You verify and commit the fix as "fix: …".
    - Re-review only the fix diff.
    - After 3 rounds on one task, stop and decide with the user: split, simplify, or move to Later.
 8. **Complete the task.**
@@ -70,7 +71,9 @@ Take tasks one at a time, in plan order. The next task starts only after this on
 - Every MVP task passes: tell the user, and offer $quality-gate (recommended: a reviewed state exists before more features) or Later items one at a time through the same loop.
 
 ## Parallel workers
-At most 2 at once, and only when the two tasks share no files and neither consumes the other's interfaces.
+At most 2 workers at once, when the two tasks share no files and each uses only interfaces already fixed in docs/plan.md. The usual pair: the UI task against the API contract, beside a logic task.
+- Brief each with its exact files and "do not touch" the other's directory.
+- Verify and commit each one separately by path, as it finishes.
 
 ## Fallback
 If spawn_agent offers no agent_type, the roles are not loaded: dispatch and review as above, spawning as AGENTS.md Subagents says.

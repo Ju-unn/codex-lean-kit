@@ -1,6 +1,6 @@
 # Worker brief (the spawn message)
 
-The worker role already carries the stable rules: TDD, commit, self-review, report format, and when to stop. The brief only carries what is specific to this task.
+The worker role already carries the stable rules: TDD, no commits, self-review, report format, and when to stop. The brief only carries what is specific to this task.
 
 ```
 Task: T-n — <name> (serves R-n)

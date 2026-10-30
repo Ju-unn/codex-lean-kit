@@ -35,7 +35,7 @@ AI 실무 평가(Krafton Cofa Probe)는 결과물만이 아니라 **일하는 �
 | `$requirements-interview` | 과제를 처음 받았을 때, 담당자 답을 받았을 때 | **열린 질문 전부를 라운드마다 질문**(개수 제한 없음). 사실은 AI가 찾고, 결정은 담당자에게, 기술 선택은 우리가. 합의 블록 확인 | mattpocock `grilling`(충실 이식) + `to-questionnaire` + juxt `elicit`(질문 기법) |
 | `$lean-plan` | 코드를 쓰기 전 | MVP 자르기, 구조 2안, 파일 구조, 인터페이스, 전역 제약, 리뷰 초점, 수직 슬라이스 작업, 자체 점검, 승인 후 handoff | superpowers `writing-plans`(충실 이식) + mattpocock `to-tickets` |
 | `$tdd` | 기능이나 버그 수정을 구현할 때 | **테스트 1개 → 실패 확인 → 최소 코드 → 전체 테스트 → 반복**. 테스트를 한꺼번에 먼저 쓰는 방식 금지 | superpowers `test-driven-development` + mattpocock `tdd`(충실 이식) |
-| `$delegate-build` | 계획의 작업을 구현할 때 | worker가 구현·커밋 → 상태별 처리 → 메인이 직접 검증 → 위험 작업은 **작업별 리뷰** → 같은 worker가 수정 → 3줄 설명 | superpowers `subagent-driven-development`(충실 이식) |
+| `$delegate-build` | 계획의 작업을 구현할 때 | worker가 구현 → 상태별 처리 → 메인이 직접 검증하고 커밋 → 위험 작업은 **작업별 리뷰** → 같은 worker가 수정 → 3줄 설명 | superpowers `subagent-driven-development`(충실 이식) |
 | `$debugging` | 테스트 실패, 버그, 예상과 다른 동작 | **근본 원인 4단계**: 조사 → 패턴 → 가설 → 수정. 3번 실패하면 구조를 재검토 | superpowers `systematic-debugging`(충실 이식) |
 | `$quality-gate` | MVP가 처음부터 끝까지 동작할 때 | **두 리뷰어 병렬**: 명세 축과 품질 축(보안·DB·과설계·Fowler 냄새). 구체적 사례가 있는 결함만 보고 | mattpocock `code-review` + ponytail-review + cloudflare·ECC 체크리스트 |
 | `$verify-and-wrap` | 25분 남았을 때, 완료라고 말하기 전 | 확인 절차(명령 → 실행 → 결과 읽기 → 판단), PASS/FAIL/NOT_RUN, REPORT, 일치 검사, 약점 브리프 | superpowers `verification-before-completion`(충실 이식) + ECC `verification-loop` |
@@ -81,7 +81,7 @@ AI 실무 평가(Krafton Cofa Probe)는 결과물만이 아니라 **일하는 �
 |---|---|---|---|
 | 메인(지휘) | `gpt-6.1-sol` / medium | 질문 안건, 계획, 검증, 문서, 사람과 대화 | 판단의 질이 결과를 좌우함. 허용 모델 중 가장 강함 |
 | explorer | `gpt-6-luna` / medium | 읽기 전용 탐색 | 가격 1/20. 읽기에는 깊은 추론이 필요 없음 |
-| worker | `gpt-6.1-sol` / medium | 작업 1개를 TDD로 구현하고 커밋, 상태 보고 | 같은 가격에 Sol 6.0보다 강함. 한 번에 맞추는 편이 싸다("turn count beats token price") |
+| worker | `gpt-6.1-sol` / medium | 작업 1개를 TDD로 구현하고 바꾼 파일을 보고(커밋은 메인) | 같은 가격에 Sol 6.0보다 강함. 한 번에 맞추는 편이 싸다("turn count beats token price") |
 | reviewer | `gpt-6.1-sol` / high | 작업별 리뷰, 최종 리뷰 2개(병렬) | 결함을 잡으려면 깊이가 필요함 |
 
 - 허용 모델은 대회 권장 4종뿐입니다: `gpt-6.1-sol`, `gpt-6-sol`, `gpt-5.6-terra`, `gpt-6-luna`.
@@ -123,6 +123,7 @@ AI 실무 평가(Krafton Cofa Probe)는 결과물만이 아니라 **일하는 �
 | Codex가 "agent_type 인자가 없다"고 함 | 역할이 로드되지 않은 것. 흔한 원인: 설치 전에 codex를 켬, 작업 공간 루트가 아닌 곳(아이콘 실행 등)에서 켬, trust를 안 고름. → 작업 공간 루트에서 codex 재시작 + trust, 그래도 0이면 첫 줄 조치. 그동안 키트는 역할 파일의 모델·effort를 직접 지정해 계속 위임함(실측: explorer가 gpt-6-luna/medium으로 뜸) |
 | `spawn_agent` 자체가 없음 | 스킬마다 대안이 있음: 같은 절차를 메인이 직접 수행 |
 | 웹 페이지가 안 보임 | "서버 실행해줘" → 미리보기 새로고침. `/ps`에 서버가 없으면(`/new` 뒤 등) 다시 요청. 그래도 안 되면 `curl localhost:3000`으로 확인, Vite면 allowedHosts 확인 |
+| "Selected model is at capacity" | 서버가 붐비는 것. 잠시 뒤 다시 시도. 계속되면 `/model`에서 `gpt-6-sol`(medium)로 바꿔 진행하고, 나중에 되돌림. 서브에이전트는 키트가 자동으로 gpt-6-sol로 띄움. Astra는 금지 |
 
 ## 7. 쓰지 않는 것
 - **규정**:

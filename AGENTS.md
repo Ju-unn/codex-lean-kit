@@ -7,9 +7,9 @@ This kit holds process only, no application code. The task README and any files 
 - The user is the decision-maker. Put every decision to the user: scope, technical choices, trade-offs.
 - A stakeholder agent holds the business facts, rules, and materials. You cannot reach it. The user relays your questions and material requests and pastes back the answers. Label each question [담당자], [자료], or [결정].
 - Main agent: talks with the user, writes docs/, spawns subagents, verifies their work, keeps time.
-- worker: implements one task test-first and commits only that task's files.
+- worker: implements one task test-first and reports its files. The main agent commits.
 - explorer, reviewer: read only. They never edit or commit.
-- Every subagent: never push, spawn agents, install packages, or start long-running servers.
+- Every subagent: never commit, push, spawn agents, install packages, or start long-running servers.
 
 ## Hard rules
 - Models: only gpt-6.1-sol, gpt-6-sol, gpt-5.6-terra, gpt-6-luna. Never use or suggest another model.
@@ -108,6 +108,7 @@ The user's browser preview is already open on port 3000 and shows only what is r
 - No agent_type on spawn_agent means the roles are not loaded. Tell the user once, then keep delegating: spawn with task_name, fork_turns "none", and the role's model and reasoning_effort (explorer gpt-6-luna medium, worker gpt-6.1-sol medium, reviewer gpt-6.1-sol high). Start the message with "Your role: follow developer_instructions in .codex/agents/<role>.toml."
 - No spawn_agent at all: do the work yourself and tell the user.
 - The message carries file paths, not pasted content.
+- A spawn or turn fails with "at capacity": retry once. Then spawn without agent_type, with model gpt-6-sol and the role's effort, and tell the user. The user switches the main agent with /model.
 - A spawn costs about 40K tokens of context. Delegate tasks bigger than a few lines; do small edits yourself.
 
 ## Token discipline

@@ -45,6 +45,7 @@ Each task is the smallest unit that carries its own test cycle and is worth a re
 - It is a narrow but complete path through every layer it needs (route → service → repository → test), demoable on its own.
 - It is sized for one fresh context. Setup and config fold into the task that needs them.
 - It lists the tasks that block it.
+- A UI task is blocked only by the task that fixes the API contract (paths, request and response fields, error codes), not by the logic tasks. Then it can run beside them.
 
 Per task:
 - Files: create / modify / test, with exact paths.
@@ -52,7 +53,7 @@ Per task:
   - consumes: exact signatures from earlier tasks
   - produces: exact names and types that later tasks use
 - Tests: test names and assertions, with the exact values from the requirements.
-- Steps: write failing test → run (expected FAIL message) → implement the signature → run (expected PASS) → commit.
+- Steps: write failing test → run (expected FAIL message) → implement the signature → run (expected PASS) → report (the controller commits).
 - Role (worker or main), and done-when.
 
 A step lets the implementer write exactly one reasonable thing.

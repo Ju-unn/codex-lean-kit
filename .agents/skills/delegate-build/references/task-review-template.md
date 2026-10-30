@@ -11,7 +11,7 @@ and the worker brief:
 What the worker claims (unverified):
 <worker report>
 
-Diff under review: base <SHA>, head <SHA>.
+Diff under review: base <SHA>, head <SHA> (the controller committed the task before this review).
 Run once: git diff --stat <base>..<head> and git diff <base>..<head>.
 Inspect code outside the diff only to check a concrete risk you name. Example: a changed contract → check its callers.
 
