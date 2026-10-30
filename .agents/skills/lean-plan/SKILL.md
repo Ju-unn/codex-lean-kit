@@ -23,6 +23,7 @@ Everything else is theirs to decide. DRY. YAGNI. TDD. A commit per task.
 
 ### 2. Architecture: two options, one recommendation
 Compare two options against the R-n they serve: cost, risk, what each makes hard. Recommend one.
+For each Later item, name the files the chosen option would change to add it. If they spread across unrelated files or layers, revisit the structure. Do not build the extension now.
 - Empty workspace: start from references/stack-ts.md.
 - Starter code exists: follow it.
 

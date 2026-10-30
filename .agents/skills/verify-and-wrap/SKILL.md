@@ -63,6 +63,7 @@ The user reads this; it is not for memorizing.
    - Why this structure?
    - What happens when X fails?
    - What was left out, and why?
+   - How would you add one Later item, and which files change?
 3. Let them answer in their own words. Correct factual errors only.
 4. Include one question with a false premise, and check that they spot it.
 

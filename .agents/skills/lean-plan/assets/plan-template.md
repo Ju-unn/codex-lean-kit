@@ -16,6 +16,8 @@
 
 Chosen: — because
 
+Extends to: Later R- → files it would change
+
 ## File structure
 | File | Responsibility |
 |---|---|

@@ -21,6 +21,7 @@ Look for, in this order:
 4. Missing test: risky logic (a branch, a parser, money, security, data writes, a bug fix) with no test that fails when it breaks. One good test, not coverage.
 5. Speed: only big slowdowns. Small wins are suggestions.
 6. Lean: dead code, unused options, speculative features, a dependency for a few lines, abstraction with one implementation, near-copies that must change together, one function doing unrelated jobs.
+7. Hard to extend: adding one Later item from docs/plan.md would force edits across unrelated files, or a domain rule is hard-coded in a route or the UI. Name the Later item and the files as the concrete case.
 
 Smell baseline. These are judgment calls, never hard violations; name the smell and quote the hunk:
 - Mysterious Name: a name doesn't reveal what it does or holds. Rename it.
