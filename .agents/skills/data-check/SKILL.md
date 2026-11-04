@@ -9,7 +9,7 @@ Most wrong answers in data tasks are wrong numbers, not broken code: the wrong d
 
 ## 1. Profile, read-only
 - Never modify the provided data files. Outputs go to out/, or to the path the task README names.
-- Look, don't read: row count, columns, types, a few rows, missing values, duplicate keys, value ranges, units. Never print or paste a whole file.
+- Look, don't read: row count, columns, types, a few rows, missing values, duplicate keys, keys that match nothing in another file, value ranges, units. Never print or paste a whole file.
   - Python: the standard library (csv, json, statistics) through `python3 -c` or a short script. pandas only if `python3 -c "import pandas"` works.
   - No Python: a short node script, or `head` and `wc -l`.
 - Record one line per file in docs/worklog.md: rows, columns, the anomalies found.
@@ -37,6 +37,10 @@ Before a number goes into the UI, an output file, or docs/REPORT.md:
 2. Check one small case by hand.
 3. Show the user the recompute command, so they can run it again.
 4. If the two disagree, use $debugging. Never adjust an expected value to match the output.
+
+When the output must follow rules (limits, no duplicates, nothing missing, time or period boundaries):
+- Check it with a small separate checker that reads only the output and the rules, never the code that made it.
+- Change one input value and check that the output changes as it should.
 
 ## 5. Stack for an analysis task
 When the deliverable is numbers or tables, offer this as one of the two options in $lean-plan; the user decides:

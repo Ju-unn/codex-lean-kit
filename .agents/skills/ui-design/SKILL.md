@@ -79,24 +79,26 @@ From docs/requirements.md and docs/plan.md:
    · 권장: 1) (미리보기 스타일 이름)
    ```
    - Style: the previewed directions as numbered choices, plus "직접 지정".
-   - Colors: primary and accent, as hex or color names. Recommend the preview's.
+   - Colors: numbered choices: 1) the preview's palette, 2) Mono Ink (흑백 잉크) from references/palette-mono.md, 3) 직접 지정 (primary and accent, as hex or color names). Recommend the one that fits the product.
    - Fonts: the preview's pair, or system fonts only.
 3. Wait for the answers. During $lean-plan these questions go in the plan gate, and the answers go under Decisions.
 
 ## Step 3: Save docs/design.md
 1. Run the chosen direction again with `--persist --output-dir /tmp/ui-design`, outside the workspace.
 2. Copy the generated MASTER.md to docs/design.md. Leave no design-system/ folder in the workspace.
-3. Set the Color Palette and Typography in docs/design.md to the user's answers. Drop its note about per-page override files.
+3. Set the Color Palette and Typography in docs/design.md to the user's answers. Mono Ink: its whole table and its usage rules, as references/palette-mono.md says. Drop its note about per-page override files.
 4. Check text contrast for every color and its on-color pair. Below 4.5:1, tell the user and propose the nearest shade that passes.
-5. Done when docs/design.md exists and matches the answers.
+5. Add the "Components and interaction" section from references/components.md §5: for each screen, the rows it will hold and its list pattern (pages, search, filters, sort), the controls chosen (tabs, toggles, segmented controls, dialogs), and its loading, empty, and error states. Show it to the user in 5 lines at most; they may overrule any line.
+6. Done when docs/design.md exists and matches the answers.
 
 ## Step 4: Build pages from docs/design.md
 1. The stylesheet starts with one `:root` block built from docs/design.md:
    - every Color Palette row as its CSS variable, for example `--color-primary: #0891B2;`
    - the Spacing Variables and Shadow Depths tokens as written
+   - the radius, space, and control-height tokens from references/components.md §1, unless docs/design.md sets others
    - `--font-heading` and `--font-body` from Typography, each ending in a system fallback, for example `'Fira Sans', system-ui, sans-serif`
 2. Components use only these variables. Raw hex values appear only inside `:root`.
-3. Follow its Component Specs and avoid its Anti-Patterns.
+3. Follow its Component Specs and its Components and interaction section, and avoid its Anti-Patterns. Every gap, corner, and height uses a token; no one-off values.
 4. Search details as needed:
 
 | Need | Domain | Example |
@@ -140,6 +142,7 @@ Do not fabricate output.
 | Performance or jank | references/quick-reference.md §3: `virtualize-lists` + `debounce-throttle` |
 
 ## Before reporting a UI task
+- Check each screen against references/components.md: no list over 20 rows without pages, every button with its loading and disabled state, every list with its empty states, spacing only from the scale.
 - Run the Pre-Delivery Checklist from docs/design.md. For mobile or native targets, also the one in references/pro-rules.md.
 - Report each item as done or not done, with the file it concerns.
 

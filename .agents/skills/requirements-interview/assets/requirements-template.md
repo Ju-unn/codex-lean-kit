@@ -28,3 +28,4 @@
 
 ## Later (outside MVP)
 -
+- Beyond the task (evidence → idea):

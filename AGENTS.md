@@ -16,6 +16,7 @@ This kit holds process only, no application code. The task README and any files 
 - Never git push or send task files, code, or data outside the workspace. Web search is for public library docs only; never put task text, code, or data into a query.
 - No computer use or browser automation. You run the server and check it with curl; the user looks at the page.
 - Do not change Codex or platform settings, sandbox, or approval policy. Never use --dangerously-* flags, danger-full-access, or --approve-for-me.
+- A command that needs approval: one plain command (no pipe, &&, cd, or VAR=value prefix) with a prefix_rule for its stable start, such as ["npm", "test"] or ["git", "commit"], so one approval covers later runs. No prefix_rule for rm or heredocs.
 - Never overwrite the task README.md. Kit documents live in docs/, flat, no subfolders: requirements.md, qna.md, plan.md, design.md (only with screens), worklog.md, HANDOFF.md, REPORT.md. Another doc file only if the task README asks for it.
 
 ## Phases
@@ -28,13 +29,14 @@ Phases move on when their done-when is met, never because of the clock. The plat
 | plan | $lean-plan, then $handoff | plan approved, docs/HANDOFF.md written, user runs /new |
 | build | $delegate-build with $tdd and $debugging | MVP tasks pass their tests and reviews |
 | gate, feature freeze | $quality-gate | Must findings fixed |
+| ship | $ship-check | targets met or their gap recorded; container steps PASS or NOT_RUN |
 | wrap | $verify-and-wrap, then $handoff | REPORT.md and HANDOFF.md match code and commits |
 | submit | - | user submits |
 
 From the gate on: fixes and docs only.
 
 ## Skill use (main agent)
-- Phase skills ($requirements-interview, $lean-plan, $delegate-build, $quality-gate, $verify-and-wrap): when a phase meets its done-when, name the next skill and wait for the user's go. Phase changes are the user's decision.
+- Phase skills ($requirements-interview, $lean-plan, $delegate-build, $quality-gate, $ship-check, $verify-and-wrap): when a phase meets its done-when, name the next skill and wait for the user's go. Phase changes are the user's decision.
 - Use these without being asked: $requirements-interview when stakeholder answers or materials arrive, $tdd before changing behaviour, $debugging on any failure, $handoff when the conversation is getting long, $data-check when the task has data files or asks for computed numbers, $ui-design before building or restyling a screen (no screen code before the user answers its style, color, and font questions).
 - If the user asks for a phase without naming its skill, read that skill's SKILL.md first.
 - The last line of every reply to the user, after the skipped/risk lines: `[사용한 스킬: <skills whose SKILL.md you followed this turn, or 없음> | 다음: <next step or skill>]`
@@ -49,7 +51,7 @@ In a new session, if docs/HANDOFF.md exists, read it before anything else, then 
 1. Inspect: `ls -la`, `git status`, README.md, existing stack or starter code. Follow what exists.
 2. `git init` if needed. Add .gitignore: node_modules, dist, .env, *.db, __pycache__/. If git identity is missing, ask the user, then set it repo-local.
 3. Commit "chore: baseline + process-only kit (github.com/Ju-unn/codex-lean-kit)", then `git branch baseline`.
-4. Create docs/worklog.md, an append-only log that starts with the time from `date` and one line of runtimes: `node -v`, `npm -v`, `python3 --version` (else `python --version`), and whether `python3 -c "import pandas"` works.
+4. Create docs/worklog.md, an append-only log that starts with the time from `date` and one line of runtimes: `node -v`, `npm -v`, `python3 --version` (else `python --version`), `docker --version`, and whether `python3 -c "import pandas"` works.
 
 ## Engineering defaults: ponytail
 Verbatim from github.com/DietrichGebert/ponytail AGENTS.md (v5.2.0, MIT).
@@ -84,6 +86,7 @@ Take the first option that fully works:
 Never cut: validation at trust boundaries, error handling that prevents data loss, security, accessibility, the calibration real hardware needs, anything the user asked for.
 
 ## Kit defaults
+- Within the approved plan, write code, fix errors, and run tests and checks without asking the user. Stop only for a [결정] or a blocked command.
 - Every module, dependency, and abstraction traces to a requirement ID (R-n).
 - Behaviour changes follow $tdd: one failing test, minimal code, repeat. $tdd is stricter than ponytail's one-small-test floor; follow $tdd.
 - Failures follow $debugging: root cause before any fix.
@@ -113,5 +116,5 @@ The user's browser preview is already open and shows only what is running. Port:
 - A spawn costs about 40K tokens of context. Delegate tasks bigger than a few lines; do small edits yourself.
 
 ## Token discipline
-- Search with rg, read only the lines you need, never re-read an unchanged file, cut output with `| tail -n 60`.
+- Search with rg, read only the lines you need, never re-read an unchanged file, cut output with `| tail -n 60` (never on a command that needs approval).
 - Reply to the user in Korean, briefly: the result first, then the one decision you need, with your recommendation.

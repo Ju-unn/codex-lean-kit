@@ -52,8 +52,24 @@ The user rephrases these in their own words. Pick the technique that fits the op
 - Check completeness at each transition: "Before we move on, is there any situation here we haven't covered?"
 - Replay a real scenario: "Say Alice does X on Monday. Walk me through what happens, step by step."
 
+## Data: what the values mean
+Ask from the data table, about one real row when you can.
+- Blank: "When this is empty, was it not measured, not applicable, or lost?"
+- Repeats: "When the same ID appears twice, is it a second event or a correction? Which one counts?"
+- Limits: "A value exactly at the limit: does it pass?"
+- Time: "Which time decides, when it happened or when it was recorded? Which time zone? Is the last day included?"
+- Known when: "At the moment you decide, do you already know this value?"
+- Clashes: "When two rules disagree on this case, which wins?"
+- One row: "Here is one real row: [values]. What should the result be?"
+
+## Causes: past the symptom
+- "Does this happen again and again? When, where, to whom?"
+- "Why does it keep happening there?" Then ask why again on the answer, until it reaches something they could change.
+- "What could be done before it happens?"
+- "If this were solved for good, what would be different in your work?"
+
 ## Scope
 - "What's the boundary? What should we deliberately leave out?"
 - "If only one thing could work on day one, which would it be?"
 
-Source: juxt/allium elicit and its references (process discovery, detail elicitation, obstacle elicitation, assumption checking), adapted from spec-writing to stakeholder interviews.
+Source: juxt/allium elicit and its references (process discovery, detail elicitation, obstacle elicitation, assumption checking), adapted from spec-writing to stakeholder interviews. Data and Causes: gxonu/sk-probe-kit question bank; awesome-skills 5-whys.

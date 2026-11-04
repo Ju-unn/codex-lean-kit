@@ -54,7 +54,7 @@ Write docs/REPORT.md in Korean, from assets/report-template.md.
 1. Commit "docs: report".
 2. Run $handoff for the final handoff to the next person.
 3. Check that the required files from the task README exist and are saved, and that `git status` is clean.
-4. Draft the result message the user sends to the stakeholder: one copyable block, at most 5 lines of plain Korean in the stakeholder's words, with no R-n or T-n IDs, file names, or commands. What was built, how to open and use it, the limits they must know, the next step.
+4. Draft the result message the user sends to the stakeholder: one copyable block, at most 5 lines of plain Korean in the stakeholder's words, with no R-n or T-n IDs, file names, or commands. What was built, how to open and use it, the limits they must know, the next step (with the improvement beyond the task from REPORT §7, if there is one).
 5. Remind the user:
    - The server stays running; they check the main screen in the preview themselves.
 

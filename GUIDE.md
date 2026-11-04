@@ -14,7 +14,7 @@ codex -m gpt-6.1-sol -c model_reasoning_effort="medium" --disable computer_use -
 1. 키트는 **작업 공간 밖**(`/tmp/kit`)에 clone합니다. 밖에 둔 clone은 지우지 않습니다. 끝까지 `cat /tmp/kit/GUIDE.md`로 이 설명서를 볼 수 있습니다.
    - Codex에 시킬 때는 위치를 정해 줍니다: `키트를 /tmp/kit에 clone하고 여기서 install.sh를 실행해줘.`
    - 작업 공간 **안**에 clone됐다면 설치한 뒤 그 폴더만 지웁니다. 기준선 커밋에 키트 저장소가 섞이지 않게 하기 위해서입니다.
-2. 설치되는 것: `AGENTS.md`, `.agents/skills/`(스킬 10개), `.codex/agents/`(역할 3개). 과제 README.md와 기존 파일은 건드리지 않습니다.
+2. 설치되는 것: `AGENTS.md`, `.agents/skills/`(스킬 11개), `.codex/agents/`(역할 3개). 과제 README.md와 기존 파일은 건드리지 않습니다.
 3. codex는 **설치한 다음에** 켭니다. 키트는 codex가 켜질 때 읽힙니다. 이미 켜져 있었다면 끄고 다시 켭니다.
 4. 신뢰를 물으면 **trust**를 고릅니다. 역할 3개는 trust한 폴더에서만 로드됩니다.
 5. 다른 터미널에서 역할을 확인합니다(토큰을 쓰지 않음).
@@ -24,7 +24,7 @@ codex -m gpt-6.1-sol -c model_reasoning_effort="medium" --disable computer_use -
 
 처음 쓰는 환경이라면 더 확인합니다.
 - 버전: `node --version && git --version && python3 --version && codex --version`
-- `$`를 입력하면 스킬 10개가 팝업으로 뜹니다.
+- `$`를 입력하면 스킬 11개가 팝업으로 뜹니다.
 - 미리보기: `node -e "require('http').createServer((q,s)=>s.end('ok')).listen(3000,'0.0.0.0')"`를 실행하고 포트 3000으로 확인합니다(Ctrl+C로 종료).
 - 플랫폼 도우미가 있으면 공개 스킬 적용 방법을 묻습니다. 안내가 다르면 그 안내를 따릅니다.
 
@@ -34,7 +34,7 @@ codex -m gpt-6.1-sol -c model_reasoning_effort="medium" --disable computer_use -
 | 종류 | 스킬 | 동작 |
 |---|---|---|
 | 상황 스킬 | `$tdd`, `$debugging`, `$handoff`, `$ui-design`(화면 작업 전), `$data-check`(데이터 파일이 있을 때), 담당자 답변을 받았을 때의 `$requirements-interview` | 이름을 부르지 않아도 Codex가 씁니다 |
-| 단계 스킬 | `$requirements-interview`, `$lean-plan`, `$delegate-build`, `$quality-gate`, `$verify-and-wrap` | 단계가 끝나면 Codex가 다음 스킬을 제안하고 기다립니다. 내가 `진행해` 또는 `$스킬`로 답합니다 |
+| 단계 스킬 | `$requirements-interview`, `$lean-plan`, `$delegate-build`, `$quality-gate`, `$ship-check`, `$verify-and-wrap` | 단계가 끝나면 Codex가 다음 스킬을 제안하고 기다립니다. 내가 `진행해` 또는 `$스킬`로 답합니다 |
 
 - 모든 답변의 마지막 줄에 `[사용한 스킬: … | 다음: …]`이 붙습니다. 무엇을 썼고 다음에 무엇을 할지 보입니다.
 - 실측 (Codex 0.165, 10/30)
@@ -52,6 +52,7 @@ $lean-plan → 내가 승인 → ($handoff) → /new    → 계획 커밋
  └ "docs/HANDOFF.md를 읽고 이어서 진행해."   (새 세션은 말하지 않아도 HANDOFF부터 읽음)
 $delegate-build   (실패하면 $debugging)        → 작업마다 커밋
 $quality-gate                                 → Must 수정
+$ship-check                                   → 성능 수치, Docker 점검
 $verify-and-wrap → ($handoff)                 → REPORT
 제출
 ```
@@ -63,6 +64,7 @@ $verify-and-wrap → ($handoff)                 → REPORT
 | 계획 | `$lean-plan 계획 세워줘.` | 승인 후 HANDOFF 작성 | 구조 2안 중 고르기, 범위 승인, `/new` 입력 |
 | 구현 | `$delegate-build T1부터 진행해.` | MVP 작업이 테스트와 리뷰 통과 | 승인 요청 확인, 작업마다 나오는 3줄 설명 읽기, 기다리는 동안 남은 질문 |
 | 점검 (기능 동결) | `$quality-gate 최종 리뷰해줘.` | Must 수정 완료 | Must와 나머지 나누기, 화면 직접 확인 |
+| 성능·배포 점검 | `$ship-check 성능 측정하고 Docker 배포 직전까지 점검해줘.` | 목표 충족 또는 차이 기록, Docker 단계 PASS/NOT_RUN | 목표 수치(동시 사용자, 응답 시간) 확인, 화면이 느린지 직접 보기 |
 | 마무리 | `$verify-and-wrap 검증하고 REPORT 작성해. 예상 질문으로 나를 점검해줘.` | REPORT와 HANDOFF가 코드·커밋과 맞음 | 결과 메시지를 담당자에게 보내기, 예상 질문에 내 말로 답하기 |
 | 제출 | — | 제출 완료 | 필수 파일과 저장 상태 확인 |
 
@@ -103,6 +105,7 @@ $verify-and-wrap → ($handoff)                 → REPORT
 | 중간에 리뷰를 받고 싶다 | `$quality-gate` |
 
 - 커밋은 메인이 작업마다 검증한 뒤 합니다. 승인 요청이 뜨면 내용을 보고 승인합니다.
+- 같은 승인 창이 작업마다 뜨면(`npm test`, `git add`, `git commit` 등) **`p`(이 명령으로 시작하는 건 다시 묻지 않기)**를 고릅니다. 키트가 이런 명령을 늘 같은 모양으로 실행하므로 한 번이면 됩니다. `rm`이나 명령 전체가 그대로 들어간 규칙은 고르지 않습니다. 이 규칙은 다음 세션에도 남습니다.
 - 서로 다른 파일을 고치고 계획에 정해진 인터페이스만 쓰는 두 작업은 worker 2개가 동시에 만듭니다(예: API 계약을 보고 만드는 화면과, 그 API를 만드는 서버 로직).
 - 서브에이전트(explorer, worker, reviewer)는 스킬이 알아서 띄웁니다. 직접 시킬 수도 있습니다: `explorer로 <무엇을> 찾아줘.`
 
