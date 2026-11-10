@@ -1,0 +1,127 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="520" viewBox="0 0 1280 520" role="img" aria-label="codex-lean-kit 작업 흐름: 질문, 계획, 구현, 리뷰, 점검, 확인">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0 0 L10 5 L0 10 z" fill="#94a3b8"/>
+    </marker>
+    <style>
+      .kr { font-family: Pretendard, 'Apple SD Gothic Neo', 'Malgun Gothic', 'Noto Sans KR', sans-serif; }
+      .mono { font-family: 'JetBrains Mono', Consolas, Menlo, 'Courier New', monospace; }
+      .title { font-size: 30px; font-weight: 800; fill: #0f172a; }
+      .sub { font-size: 16px; fill: #475569; }
+      .meta { font-size: 14px; fill: #64748b; }
+      .num { font-size: 13px; font-weight: 700; fill: #ffffff; }
+      .step { font-size: 22px; font-weight: 800; fill: #0f172a; }
+      .skill { font-size: 12.5px; fill: #334155; }
+      .desc { font-size: 13.5px; fill: #475569; }
+      .human { font-size: 13px; font-weight: 700; fill: #92400e; }
+      .band { font-size: 14px; font-weight: 700; fill: #334155; }
+      .chip { font-size: 13px; fill: #334155; }
+    </style>
+  </defs>
+
+  <!-- solid card so the picture reads on GitHub dark mode too -->
+  <rect x="1" y="1" width="1278" height="518" rx="20" fill="#ffffff" stroke="#e2e8f0" stroke-width="2"/>
+
+  <text x="48" y="70" class="kr title">codex-lean-kit</text>
+  <text x="48" y="100" class="kr sub">사람이 지휘하고, AI는 위임받은 일만 합니다</text>
+  <text x="1232" y="70" text-anchor="end" class="kr meta">스킬 11개 · 역할 3개</text>
+  <text x="1232" y="96" text-anchor="end" class="kr meta">OpenAI Codex용 작업 키트</text>
+
+  <!-- six phase boxes: x = 38 + i*204, width 184 -->
+  <g class="kr">
+    <g transform="translate(38,140)">
+      <rect width="184" height="160" rx="14" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5"/>
+      <rect width="184" height="6" rx="3" fill="#0ea5e9"/>
+      <circle cx="26" cy="34" r="13" fill="#0ea5e9"/><text x="26" y="39" text-anchor="middle" class="num">1</text>
+      <text x="48" y="42" class="step">질문</text>
+      <text x="16" y="84" class="mono skill">$requirements-interview</text>
+      <text x="16" y="128" class="desc">숨은 요구사항을</text>
+      <text x="16" y="148" class="desc">질문으로 끌어내기</text>
+    </g>
+    <g transform="translate(242,140)">
+      <rect width="184" height="160" rx="14" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5"/>
+      <rect width="184" height="6" rx="3" fill="#6366f1"/>
+      <circle cx="26" cy="34" r="13" fill="#6366f1"/><text x="26" y="39" text-anchor="middle" class="num">2</text>
+      <text x="48" y="42" class="step">계획</text>
+      <text x="16" y="84" class="mono skill">$lean-plan</text>
+      <text x="16" y="128" class="desc">MVP를 자르고</text>
+      <text x="16" y="148" class="desc">작업을 잘게 나누기</text>
+    </g>
+    <g transform="translate(446,140)">
+      <rect width="184" height="160" rx="14" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5"/>
+      <rect width="184" height="6" rx="3" fill="#10b981"/>
+      <circle cx="26" cy="34" r="13" fill="#10b981"/><text x="26" y="39" text-anchor="middle" class="num">3</text>
+      <text x="48" y="42" class="step">구현</text>
+      <text x="16" y="78" class="mono skill">$delegate-build</text>
+      <text x="16" y="96" class="mono skill">$tdd</text>
+      <text x="16" y="128" class="desc">테스트 먼저 쓰고</text>
+      <text x="16" y="148" class="desc">작업마다 커밋</text>
+    </g>
+    <g transform="translate(650,140)">
+      <rect width="184" height="160" rx="14" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5"/>
+      <rect width="184" height="6" rx="3" fill="#f59e0b"/>
+      <circle cx="26" cy="34" r="13" fill="#f59e0b"/><text x="26" y="39" text-anchor="middle" class="num">4</text>
+      <text x="48" y="42" class="step">리뷰</text>
+      <text x="16" y="84" class="mono skill">$quality-gate</text>
+      <text x="16" y="128" class="desc">명세 · 품질 두 축을</text>
+      <text x="16" y="148" class="desc">리뷰어 둘이 동시에</text>
+    </g>
+    <g transform="translate(854,140)">
+      <rect width="184" height="160" rx="14" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5"/>
+      <rect width="184" height="6" rx="3" fill="#ef4444"/>
+      <circle cx="26" cy="34" r="13" fill="#ef4444"/><text x="26" y="39" text-anchor="middle" class="num">5</text>
+      <text x="48" y="42" class="step">점검</text>
+      <text x="16" y="84" class="mono skill">$ship-check</text>
+      <text x="16" y="128" class="desc">측정한 병목만</text>
+      <text x="16" y="148" class="desc">고치고 다시 재기</text>
+    </g>
+    <g transform="translate(1058,140)">
+      <rect width="184" height="160" rx="14" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5"/>
+      <rect width="184" height="6" rx="3" fill="#8b5cf6"/>
+      <circle cx="26" cy="34" r="13" fill="#8b5cf6"/><text x="26" y="39" text-anchor="middle" class="num">6</text>
+      <text x="48" y="42" class="step">확인</text>
+      <text x="16" y="84" class="mono skill">$verify-and-wrap</text>
+      <text x="16" y="128" class="desc">증거 없이는</text>
+      <text x="16" y="148" class="desc">완료라고 하지 않기</text>
+    </g>
+  </g>
+
+  <!-- arrows between boxes -->
+  <g stroke="#94a3b8" stroke-width="2.5" marker-end="url(#arrow)">
+    <line x1="224" y1="220" x2="238" y2="220"/>
+    <line x1="428" y1="220" x2="442" y2="220"/>
+    <line x1="632" y1="220" x2="646" y2="220"/>
+    <line x1="836" y1="220" x2="850" y2="220"/>
+    <line x1="1040" y1="220" x2="1054" y2="220"/>
+  </g>
+
+  <!-- where the human decides -->
+  <g class="kr" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="4 4">
+    <line x1="130" y1="300" x2="130" y2="332"/>
+    <line x1="334" y1="300" x2="334" y2="332"/>
+    <line x1="1150" y1="300" x2="1150" y2="332"/>
+  </g>
+  <g class="kr">
+    <rect x="62" y="332" width="136" height="32" rx="16" fill="#fef3c7" stroke="#f59e0b"/>
+    <text x="130" y="353" text-anchor="middle" class="human">사람: 합의 확인</text>
+    <rect x="266" y="332" width="136" height="32" rx="16" fill="#fef3c7" stroke="#f59e0b"/>
+    <text x="334" y="353" text-anchor="middle" class="human">사람: 계획 승인</text>
+    <rect x="1082" y="332" width="136" height="32" rx="16" fill="#fef3c7" stroke="#f59e0b"/>
+    <text x="1150" y="353" text-anchor="middle" class="human">사람: 결과 확인</text>
+  </g>
+
+  <!-- situational skills -->
+  <rect x="38" y="400" width="1204" height="80" rx="14" fill="#f1f5f9"/>
+  <text x="62" y="446" class="kr band">상황에 따라 자동으로</text>
+  <g class="mono">
+    <rect x="238" y="424" width="128" height="32" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
+    <text x="302" y="445" text-anchor="middle" class="chip">$debugging</text>
+    <rect x="382" y="424" width="116" height="32" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
+    <text x="440" y="445" text-anchor="middle" class="chip">$handoff</text>
+    <rect x="514" y="424" width="124" height="32" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
+    <text x="576" y="445" text-anchor="middle" class="chip">$ui-design</text>
+    <rect x="654" y="424" width="132" height="32" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
+    <text x="720" y="445" text-anchor="middle" class="chip">$data-check</text>
+  </g>
+  <text x="1218" y="446" text-anchor="end" class="kr desc">실패하면 원인부터 · 세션이 바뀌어도 이어 가기</text>
+</svg>
