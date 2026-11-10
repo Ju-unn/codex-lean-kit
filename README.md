@@ -13,7 +13,7 @@
 
 <br/><br/>
 
-<img src="docs/images/workflow.svg" width="100%" alt="질문 → 계획 → 구현 → 리뷰 → 점검 → 확인으로 이어지는 키트의 작업 흐름"/>
+<img src="docs/images/hackathon.jpg" width="600" alt="SK하이닉스 AI 해커톤 2026"/>
 
 </div>
 
@@ -32,6 +32,8 @@ SK하이닉스 AI 해커톤을 준비하면서 만들었어요. AI로 일하는 
 - 과설계하지 않는다
 
 ## 어떻게 쓰나
+
+<img src="docs/images/workflow.svg" width="100%" alt="질문 → 계획 → 구현 → 리뷰 → 점검 → 확인으로 이어지는 키트의 작업 흐름"/>
 
 작업 공간 루트에서 한 번 설치하고 Codex를 켜요.
 
